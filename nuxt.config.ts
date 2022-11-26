@@ -52,6 +52,9 @@ export default defineNuxtConfig({
 				viewer: true,
 			},
 		],
+		["nuxt-headlessui", {
+			prefix: "Headless"
+		}]
 	],
 	components: {},
 });

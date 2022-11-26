@@ -7,3 +7,13 @@
     font-family: Lexend, system-ui, sans-serif;
   }
 }
+
+.sidebars {
+  @apply
+    w-1/5
+    h-full
+    max-sm:w-full
+    max-sm:h-auto
+    bg-white
+    max-sm:shadow-none
+}
