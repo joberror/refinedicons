@@ -10,8 +10,11 @@
 
 .sidebars {
   @apply
+    flex
+    flex-row
     w-1/5
     h-full
+    pt-8
     max-sm:w-full
     max-sm:h-auto
     bg-white

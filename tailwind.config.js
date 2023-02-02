@@ -18,6 +18,9 @@ module.exports = {
 				sbl: "2px 0px 4px rgba(0, 0, 0, 0.1)",
 				sbr: "-2px 0px 4px rgba(0, 0, 0, 0.1)",
 			},
+			backgroundImage: {
+				"viewer": "url('ui/viewer-bg.svg')",
+			},
 		},
 		colors: {
 			transparent: "transparent",
