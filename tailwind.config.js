@@ -1,25 +1,41 @@
 const colors = require("tailwindcss/colors");
 
 module.exports = {
+	darkMode: "class",
+	content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
+	plugins: [require("tailwindcss-scrollbar")],
 	theme: {
 		extend: {
 			colors: {
-				"cb": "#C3FABB", // Base color
-				"cba": "#15A600", // Base active
-				"brd": "#5EEC4A", // input border
-				"cbd": "#5A7959", // Base dark
-				"cbg": "#FBFEFA", // Content background
-				"cmb": "#DAFCD5", // Main background
-				"cpn": "#092C08", // Project name
-				"cib": "#F6F6F6", // Input background
+				theme: {
+					//Generic
+					primary: {
+						100: "#A0A3BD",
+						200: "#6F6C90", //primary
+						300: "#514F6E",
+						400: "#28283E", //text
+						900: "#5D5FEF", //figma
+					},
+					bg: "#EFF0F6",
+					//Dark theme
+					dark: {
+						bg: "#0F0E14",
+					},
+				},
 			},
 			boxShadow: {
-				mc: "0px -2px 17px rgba(117, 112, 112, 0.25)",
-				sbl: "2px 0px 4px rgba(0, 0, 0, 0.1)",
-				sbr: "-2px 0px 4px rgba(0, 0, 0, 0.1)",
+				box: "0 1px 3px rgba(11, 19, 36, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.1)",
 			},
 			backgroundImage: {
-				"viewer": "url('ui/viewer-bg.svg')",
+				viewer: "url('ui/viewer-bg.svg')",
+			},
+			gridTemplateRows: {
+				all: "repeat(auto-fill, minmax(96px, 1fr))",
+				few: "repeat(3, minmax(96px, 1fr))",
+			},
+			gridTemplateColumns: {
+				all: "repeat(auto-fill, minmax(96px, 1fr))",
+				few: "repeat(3, minmax(96px, 1fr))",
 			},
 		},
 		colors: {
@@ -28,6 +44,15 @@ module.exports = {
 			black: colors.black,
 			white: colors.white,
 			gray: colors.gray,
+			slate: colors.slate,
+			zinc: colors.zinc,
+			neutral: colors.neutral,
 		},
+	},
+	variants: {
+		extend: {
+			backgroundImage: ["dark"],
+		},
+		scrollbar: ["dark"],
 	},
 };

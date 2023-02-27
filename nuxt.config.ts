@@ -4,13 +4,13 @@ import { searchForWorkspaceRoot } from "vite";
 export default defineNuxtConfig({
 	app: {
 		head: {
-			title: "Simpicons: icons for UI designs",
+			title: "Refined Icons: uniquely crafted icons for UI",
 			meta: [
 				{ name: "author", content: "Bolarinwa Olakunle (Joberror)" },
 				{
 					name: "description",
 					content:
-						"Simple and visually designed icons for web development and design",
+						"Crafted with care: Unique icons for web developers and designers",
 				},
 				{
 					name: "keywords",
@@ -25,21 +25,19 @@ export default defineNuxtConfig({
 				{ hid: "description", name: "description", content: "" },
 				{ name: "format-detection", content: "telephone=yes" },
 			],
+			link: [
+				{
+					rel: "icon",
+					type: "image/x-icon",
+					href: "/favicon.svg",
+				},
+				{
+					rel: "apple-touch-icon",
+					href: "/apple-touch-icon.png",
+				},
+			],
 		},
 	},
-	buildModules: [
-		[
-			"@nuxtjs/google-fonts",
-			{
-				families: {
-					Lexend: [400, 500, 600],
-				},
-				display: "swap",
-				prefetch: true,
-				preconnect: true,
-			},
-		]
-	],
 	modules: [
 		[
 			"@nuxtjs/tailwindcss",
@@ -52,10 +50,17 @@ export default defineNuxtConfig({
 				viewer: true,
 			},
 		],
-		["nuxt-headlessui", {
-			prefix: "Headless"
-		}]
+		[
+			"@nuxtjs/google-fonts",
+			{
+				families: {
+					Sen: [400, 700, 800],
+				},
+				display: "swap",
+				prefetch: true,
+				preconnect: true,
+			},
+		],
 	],
 	components: {},
 });
-

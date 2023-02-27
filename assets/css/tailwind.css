@@ -4,19 +4,18 @@
 
 @layer base {
   html {
-    font-family: Lexend, system-ui, sans-serif;
+    font-family: Sen, system-ui, sans-serif;
   }
-}
 
-.sidebars {
-  @apply
-    flex
-    flex-row
-    w-1/5
-    h-full
-    pt-8
-    max-sm:w-full
-    max-sm:h-auto
-    bg-white
-    max-sm:shadow-none
+  body {
+    @apply bg-theme-bg dark:bg-theme-dark-bg overflow-y-auto scrollbar-w-1 scrollbar-thumb-white scrollbar-track-gray-200 dark:scrollbar-thumb-zinc-900 dark:scrollbar-track-zinc-800 scroll-smooth
+  }
+
+  .svgBox li {
+    @apply flex flex-row w-24 h-24 snap-end items-center justify-center
+  }
+
+  .notify-visible {
+    @apply visible
+  }
 }
