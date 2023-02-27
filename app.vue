@@ -118,18 +118,40 @@
 			</div>
 		</section>
 		<section
-			class="flex flex-wrap justify-center w-[55vw] ml-auto p-8 gap-16 max-md:w-full"
+			class="w-[55vw] ml-auto p-8 max-md:w-full"
 		>
-			<svgGrid v-for="(cat, key) in allData" :cat="cat" :key="key" />
+			<div class="flex items-center justify-end pb-8 px-6">
+				<input type="text" placeholder="Search for icons" id="search" class="px-4 py-4 bg-theme-primary-300 w-[350px] outline-none border-0" v-model="search">
+			</div>
+			<div class="flex flex-wrap justify-center gap-16">
+				<svgGrid v-for="(cat, key) in filteredData(search)" :cat="cat" :key="key" />
+			</div>
 		</section>
 	</main>
 	<footer></footer>
 </template>
-<script setup>
-import { ref } from 'vue'
-import { useDark, useToggle } from "@vueuse/core";
+
+<script>
 import data from "@/content/data.json";
+const allData = data;
+
+export default {
+	data() {
+    return {
+      search: '',
+			filteredData(search){
+				return allData.filter(item => item.icons.find(icon => icon.match(search)))
+			},
+    }
+  }
+}
+</script>
+
+<script setup>
+import { useDark, useToggle } from "@vueuse/core";
+import { ref } from 'vue'
 import svgGrid from "@/components/svgGrid.vue";
+
 
 useHead({
 	htmlAttrs: {
@@ -137,13 +159,13 @@ useHead({
 	},
 });
 
+
 // toggle Dark and Light theme
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
 
-// assign data
-const allData = data;
 
+// assign data
 const details = {
 	version: 1.6,
 	numOfCategory: Object.keys(allData).length,
