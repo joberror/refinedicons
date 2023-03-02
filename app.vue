@@ -1,9 +1,9 @@
 <template>
 	<main>
-		<section class="fixed inset-0 w-[45vw] max-md:w-full max-md:relative bg-[linear-gradient(68.8deg,#EBE4FF_2.16%,#FFFFFF_85.7%)] dark:bg-[linear-gradient(120.52deg,#15131D_36.96%,#070709_94.98%)]">
-			<div
-				class="flex flex-col w-full p-8 max-sm:p-2"
-			>
+		<section
+			class="fixed inset-0 w-[45vw] max-md:w-full max-md:relative bg-[linear-gradient(68.8deg,#EBE4FF_2.16%,#FFFFFF_85.7%)] dark:bg-[linear-gradient(120.52deg,#15131D_36.96%,#070709_94.98%)]"
+		>
+			<div class="flex flex-col w-full p-8 max-sm:p-2">
 				<header class="flex flex-row items-center justify-between w-full">
 					<ul class="flex flex-row items-center gap-2">
 						<li class="w-8 max-sm:w-6">
@@ -48,7 +48,10 @@
 								class="flex flex-row px-4 py-3 font-bold text-center duration-500 border-solid rounded ring-1 ring-inset group max-sm:px-2 max-sm:py-2 ring-theme-primary-100 text-theme-primary-900 hover:bg-theme-primary-900 hover:text-white hover:ring-0 dark:ring-theme-primary-300"
 							>
 								<span class="hidden w-6 h-6 max-md:inline-flex">
-									<svg data-url="/ui/figma.svg" class="w-full stroke-theme-primary-900 group-hover:stroke-white"></svg>
+									<svg
+										data-url="/ui/figma.svg"
+										class="w-full stroke-theme-primary-900 group-hover:stroke-white"
+									></svg>
 								</span>
 								<span class="max-md:hidden">Figma</span>
 							</a>
@@ -72,14 +75,27 @@
 						</li>
 					</ul>
 				</header>
-				<div class="w-full px-6 flex flex-row divide-y divide-x divide-[#E0E5FE] dark:divide-[#181C2D] flex-wrap justify-center py-[8vh] mt-8 max-sm:py-[2vh] max-sm:mt-2 max-sm:px-2 bg-[linear-gradient(170.42deg,#FEFDFF_33.23%,#FFFFFF_33.23%,#EEEEFF_81.16%)] dark:bg-[linear-gradient(65.15deg,#18161C_-17.14%,#171224_45.94%,#100F13_79.24%)]">
-					<ul v-for="rom in svgPpt" class="box-border flex flex-col w-1/3 px-12 py-10 max-sm:w-1/2 max-sm:px-8 max-sm:py-8">
-						<li class="mb-4 text-[#A1A2BA] dark:text-theme-primary-300 text-lg">{{ rom.name }}</li>
+				<div
+					class="w-full px-6 flex flex-row divide-y divide-x divide-[#E0E5FE] dark:divide-[#181C2D] flex-wrap justify-center py-[8vh] mt-8 max-sm:py-[2vh] max-sm:mt-2 max-sm:px-2 bg-[linear-gradient(170.42deg,#FEFDFF_33.23%,#FFFFFF_33.23%,#EEEEFF_81.16%)] dark:bg-[linear-gradient(65.15deg,#18161C_-17.14%,#171224_45.94%,#100F13_79.24%)]"
+				>
+					<ul
+						v-for="rom in svgPpt"
+						class="box-border flex flex-col w-1/3 px-12 py-10 max-sm:w-1/2 max-sm:px-8 max-sm:py-8"
+					>
+						<li class="mb-4 text-[#A1A2BA] dark:text-theme-primary-300 text-lg">
+							{{ rom.name }}
+						</li>
 						<li class="inline-flex flex-row items-center">
 							<span class="w-8 h-8">
-								<svg :data-url="'/ui/' + rom.svg" class="w-full stroke-[#ABACF1]"></svg>
+								<svg
+									:data-url="'/ui/' + rom.svg"
+									class="w-full stroke-[#ABACF1]"
+								></svg>
 							</span>
-							<em class="ml-4 not-italic font-semibold text-theme-primary-400 dark:text-[#A1A2BA]">{{ rom.ppt }}</em>
+							<em
+								class="ml-4 not-italic font-semibold text-theme-primary-400 dark:text-[#A1A2BA]"
+								>{{ rom.ppt }}</em
+							>
 						</li>
 					</ul>
 				</div>
@@ -117,14 +133,22 @@
 				</ul>
 			</div>
 		</section>
-		<section
-			class="w-[55vw] ml-auto p-8 max-md:w-full"
-		>
-			<div class="flex items-center justify-end pb-8 px-6">
-				<input type="text" placeholder="Search for icons" id="search" class="px-4 py-4 bg-theme-primary-300 w-[350px] outline-none border-0" v-model="search">
+		<section class="w-[55vw] ml-auto p-8 max-md:w-full">
+			<div class="flex items-center justify-end px-6 pb-8">
+				<input
+					type="text"
+					placeholder="Search for icons"
+					id="search"
+					class="px-4 py-4 bg-theme-primary-300 w-[350px] outline-none border-0"
+					v-model="search"
+				/>
 			</div>
 			<div class="flex flex-wrap justify-center gap-16">
-				<svgGrid v-for="(cat, key) in filteredData(search)" :cat="cat" :key="key" />
+				<svgGrid
+					v-for="(cat, key) in filteredData(search)"
+					:cat="cat"
+					:key="key"
+				/>
 			</div>
 		</section>
 	</main>
@@ -137,21 +161,100 @@ const allData = data;
 
 export default {
 	data() {
-    return {
-      search: '',
-			filteredData(search){
-				return allData.filter(item => item.icons.find(icon => icon.match(search)))
+		let svgLoad;
+		return {
+			search: "",
+			filteredData(search) {
+				return allData.filter((item) =>
+					item.icons.find((icon) => icon.match(search))
+				);
 			},
-    }
-  }
-}
+			svgLoad,
+		};
+	},
+	mounted() {
+		this.svgLoad = () => {
+			// Find our SVGs.
+				const svgs = document.querySelectorAll("svg[data-url]");
+				const svgsLen = svgs.length;
+				// Loop and process.
+				for (let i = 0; i < svgsLen; ++i) {
+					// Grab the URL and delete the attribute; we no longer
+					// need it.
+					if (svgs[i].innerHTML) svgs[i].textContent = ""
+					let url = svgs[i].getAttribute("data-url");
+					svgs[i].removeAttribute("data-url");
+					// We'll let another function handle the actual fetching
+					// so we can use the async modifier.
+					fetchSvg(url, svgs[i]);
+				};
+		};
+		let /**
+			 * Fetch the SVG
+			 * @param {String} url URL
+			 * @param {Element} el Element
+			 * @returns {Promise<void>}
+			 */
+			fetchSvg = async (url, el) => {
+				// Dog bless fetch() and await, though be advised you'll need
+				// to transpile this down to ES5 for older browsers.
+				let response = await fetch(url);
+				let data = await response.text();
+
+				// This response should be an XML document we can parse.
+				const parser = new DOMParser();
+				const parsed = parser.parseFromString(data, "image/svg+xml");
+
+				// The file might not actually begin with "<svg>", and
+				// for that matter there could be none, or many.
+				let /** @type {SVGElement} */ svg = parsed.getElementsByTagName("svg");
+
+				if (svg.length) {
+					// But we only want the first.
+					svg = svg[0];
+
+					// Copy over the attributes first.
+					const attr = svg.attributes;
+					const attrLen = attr.length;
+					for (let i = 0; i < attrLen; ++i) {
+						if (attr[i].specified) {
+							// Merge classes.
+							if ("class" === attr[i].name) {
+								const classes = attr[i].value
+									.replace(/\s+/g, " ")
+									.trim()
+									.split(" ");
+								const classesLen = classes.length;
+								for (let j = 0; j < classesLen; ++j) {
+									el.classList.add(classes[j]);
+								}
+							}
+							// Add/replace anything else.
+							else {
+								el.setAttribute(attr[i].name, attr[i].value);
+							}
+						}
+					}
+					// Now transfer over the children. Note: IE does not
+					// assign an innerHTML property to SVGs, so we need to
+					// go node by node.
+					while (svg.childNodes.length) {
+						el.appendChild(svg.childNodes[0]);
+					}
+				}
+			};
+		this.svgLoad();
+	},
+	updated() {
+		this.svgLoad();
+	}
+};
 </script>
 
 <script setup>
 import { useDark, useToggle } from "@vueuse/core";
-import { ref } from 'vue'
+import { ref } from "vue";
 import svgGrid from "@/components/svgGrid.vue";
-
 
 useHead({
 	htmlAttrs: {
@@ -159,11 +262,9 @@ useHead({
 	},
 });
 
-
 // toggle Dark and Light theme
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
-
 
 // assign data
 const details = {
@@ -175,24 +276,36 @@ const details = {
 // SVG illustrative properties
 const properties = [
 	{
-		name: 'Corner', svg: 'stroke-corner.svg', ppt: '1pt round'
+		name: "Corner",
+		svg: "stroke-corner.svg",
+		ppt: "1pt round",
 	},
 	{
-		name: 'Padding', svg: 'icon-padding.svg', ppt: '2pt'
+		name: "Padding",
+		svg: "icon-padding.svg",
+		ppt: "2pt",
 	},
 	{
-		name: 'Weight', svg: 'stroke.svg', ppt: '2pt'
+		name: "Weight",
+		svg: "stroke.svg",
+		ppt: "2pt",
 	},
 	{
-		name: 'Align', svg: 'stroke-align.svg', ppt: 'center'
+		name: "Align",
+		svg: "stroke-align.svg",
+		ppt: "center",
 	},
 	{
-		name: 'Edge', svg: 'stroke-edges.svg', ppt: 'round'
+		name: "Edge",
+		svg: "stroke-edges.svg",
+		ppt: "round",
 	},
 	{
-		name: 'Size', svg: 'icon-size.svg', ppt: '24pt'
-	}
-]
+		name: "Size",
+		svg: "icon-size.svg",
+		ppt: "24pt",
+	},
+];
 
 const svgPpt = ref(properties);
 </script>

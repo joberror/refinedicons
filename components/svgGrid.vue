@@ -20,12 +20,12 @@
 						></svg>
 					</span>
 					<span
-						before="+"
-						after="-"
+						data-before="+"
+						data-after="-"
 						class="text-sm text-slate-400"
 						:class="{
-							'before:content-[attr(before)]': !toggleGrid,
-							'before:content-[attr(after)]': toggleGrid,
+							'before:content-[attr(data-before)]': !toggleGrid,
+							'before:content-[attr(data-after)]': toggleGrid,
 						}"
 					></span>
 				</button>
