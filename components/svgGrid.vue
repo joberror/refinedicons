@@ -72,7 +72,7 @@
 			</li>
 		</ul>
 		<ul
-			class="inline-flex justify-between w-full p-2 mt-2 bg-[rgba(217,219,233,0.5)] dark:bg-[#15141afb] text-gray-400 dark:text-theme-primary-300"
+			class="inline-flex justify-between w-full py-2 px-4 mt-2 bg-[rgba(217,219,233,0.46)] dark:bg-[#15141afb] text-gray-600 dark:text-theme-primary-300"
 		>
 			<li class="capitalize">{{ cat.category }}</li>
 			<li class="font-bold">{{ cat.total }}</li>

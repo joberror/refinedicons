@@ -133,15 +133,26 @@
 				</ul>
 			</div>
 		</section>
-		<section class="w-[55vw] ml-auto p-8 max-md:w-full">
-			<div class="flex items-center justify-end px-6 pb-8">
-				<input
-					type="text"
-					placeholder="Search for icons"
-					id="search"
-					class="px-4 py-4 bg-theme-primary-300 w-[350px] outline-none border-0"
-					v-model="search"
-				/>
+		<section class="w-[55vw] ml-auto px-8 pb-8 max-md:w-full">
+			<div class="flex justify-end w-full py-8">
+				<div
+					class="flex flex-row justify-between py-2 pl-2 pr-2 transition-all duration-300 bg-white border rounded-full hover:w-1/3 hover:pl-4 group ring-1 ring-theme-primary-100 ring-offset-4 ring-offset-white dark:ring-theme-primary-400 dark:bg-theme-primary-300 dark:ring-offset-theme-primary-300 dark:border-transparent"
+				>
+					<input
+						type="text"
+						autocomplete="off"
+						placeholder="Search for icons"
+						id="search"
+						class="hidden text-black bg-transparent border-0 outline-none dark:text-white max-w-max group-hover:inline-flex placeholder:text-black dark:placeholder:text-white"
+						v-model="search"
+					/>
+					<span class="w-6 h-6">
+						<svg
+							data-url="ui/search.svg"
+							class="w-full stroke-theme-primary-300 dark:stroke-white stroke-[4]"
+						></svg>
+					</span>
+				</div>
 			</div>
 			<div class="flex flex-wrap justify-center gap-16">
 				<svgGrid
@@ -175,19 +186,19 @@ export default {
 	mounted() {
 		this.svgLoad = () => {
 			// Find our SVGs.
-				const svgs = document.querySelectorAll("svg[data-url]");
-				const svgsLen = svgs.length;
-				// Loop and process.
-				for (let i = 0; i < svgsLen; ++i) {
-					// Grab the URL and delete the attribute; we no longer
-					// need it.
-					if (svgs[i].innerHTML) svgs[i].textContent = ""
-					let url = svgs[i].getAttribute("data-url");
-					svgs[i].removeAttribute("data-url");
-					// We'll let another function handle the actual fetching
-					// so we can use the async modifier.
-					fetchSvg(url, svgs[i]);
-				};
+			const svgs = document.querySelectorAll("svg[data-url]");
+			const svgsLen = svgs.length;
+			// Loop and process.
+			for (let i = 0; i < svgsLen; ++i) {
+				// Grab the URL and delete the attribute; we no longer
+				// need it.
+				if (svgs[i].innerHTML) svgs[i].textContent = "";
+				let url = svgs[i].getAttribute("data-url");
+				svgs[i].removeAttribute("data-url");
+				// We'll let another function handle the actual fetching
+				// so we can use the async modifier.
+				fetchSvg(url, svgs[i]);
+			}
 		};
 		let /**
 			 * Fetch the SVG
@@ -247,7 +258,7 @@ export default {
 	},
 	updated() {
 		this.svgLoad();
-	}
+	},
 };
 </script>
 
