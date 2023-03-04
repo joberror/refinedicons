@@ -133,10 +133,10 @@
 				</ul>
 			</div>
 		</section>
-		<section class="w-[55vw] ml-auto px-8 pb-8 max-md:w-full">
-			<div class="flex justify-end w-full py-8">
+		<section class="w-[55vw] ml-auto px-8 pb-8 max-md:w-full relative">
+			<div class="sticky top-0 flex justify-end w-full py-8">
 				<div
-					class="flex flex-row justify-between py-2 pl-2 pr-2 transition-all duration-300 bg-white border rounded-full hover:w-1/3 hover:pl-4 group ring-1 ring-theme-primary-100 ring-offset-4 ring-offset-white dark:ring-theme-primary-400 dark:bg-theme-primary-300 dark:ring-offset-theme-primary-300 dark:border-transparent"
+					class="flex flex-row justify-between py-2 pl-2 pr-2 transition-all duration-300 bg-white border rounded-full hover:w-1/3 max-sm:hover:w-full hover:pl-4 group ring-1 ring-theme-primary-100 ring-offset-4 ring-offset-white dark:ring-theme-primary-400 dark:bg-theme-primary-300 dark:ring-offset-theme-primary-300 dark:border-transparent"
 				>
 					<input
 						type="text"
