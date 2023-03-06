@@ -134,32 +134,31 @@
 			</div>
 		</section>
 		<section class="w-[55vw] ml-auto px-8 pb-8 max-md:w-full relative">
-			<div class="sticky top-0 flex justify-end w-full py-8">
-				<div
+			<div class="sticky top-0 z-10 flex justify-end w-full py-8">
+				<form
 					class="flex flex-row justify-between py-2 pl-2 pr-2 transition-all duration-300 bg-white border rounded-full hover:w-1/3 max-sm:hover:w-full hover:pl-4 group ring-1 ring-theme-primary-100 ring-offset-4 ring-offset-white dark:ring-theme-primary-400 dark:bg-theme-primary-300 dark:ring-offset-theme-primary-300 dark:border-transparent"
+					@submit.prevent="submitSearch"
 				>
 					<input
 						type="text"
 						autocomplete="off"
 						placeholder="Search for icons"
-						id="search"
-						class="hidden text-black bg-transparent border-0 outline-none dark:text-white max-w-max group-hover:inline-flex placeholder:text-black dark:placeholder:text-white"
-						v-model="search"
+						class="hidden w-1/2 text-black bg-transparent border-0 outline-none dark:text-white max-w-max group-hover:inline-flex placeholder:text-black dark:placeholder:text-white"
+						@input="handleSearch"
 					/>
-					<span class="w-6 h-6">
+					<em class="hidden text-sm text-gray-400 group-hover:inline">{{
+						search
+					}}</em>
+					<button class="w-6 h-6" @click="submitSearch">
 						<svg
 							data-url="ui/search.svg"
 							class="w-full stroke-theme-primary-300 dark:stroke-white stroke-[4]"
 						></svg>
-					</span>
-				</div>
+					</button>
+				</form>
 			</div>
-			<div class="flex flex-wrap justify-center gap-16">
-				<svgGrid
-					v-for="(cat, key) in filteredData(search)"
-					:cat="cat"
-					:key="key"
-				/>
+			<div class="z-0 flex flex-wrap justify-center gap-16">
+				<svgGrid v-for="(cat, key) in allData" :cat="cat" :key="key" :ref="ref"/>
 			</div>
 		</section>
 	</main>
@@ -170,18 +169,28 @@
 import data from "@/content/data.json";
 const allData = data;
 
+const allIcons = allData.map(function(sub) {
+  return sub.icons.flat(1); // flatten each subarray by one level
+}).flat(1).sort();
+
 export default {
 	data() {
-		let svgLoad;
+		let svgLoad, submitSearch;
 		return {
 			search: "",
-			filteredData(search) {
-				return allData.filter((item) =>
-					item.icons.find((icon) => icon.match(search))
-				);
-			},
 			svgLoad,
+			submitSearch
 		};
+	},
+	methods: {
+		handleSearch(e) {
+			// Check for exact match and return the string
+			this.search = allIcons.find((name) => name.match(new RegExp(e.target.value, "gi")) && name.length === e.target.value.length)
+			// if extra match isn't met, pick the first one in the array
+			if (this.search === undefined) {
+				this.search = allIcons.find((name) => name.match(new RegExp(e.target.value , "gi")))
+			}
+		}
 	},
 	mounted() {
 		this.svgLoad = () => {
@@ -255,6 +264,15 @@ export default {
 				}
 			};
 		this.svgLoad();
+
+		this.submitSearch = () => {
+			let el = document.querySelector(`a[data-keyword="${this.search}"]`);
+			el.classList.add("showcase-icon");
+			setTimeout(() => {
+				el.classList.remove("showcase-icon");
+			}, 6000);
+			el.scrollIntoView({ behavior: 'smooth' });
+		}
 	},
 	updated() {
 		this.svgLoad();

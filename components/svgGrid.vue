@@ -55,6 +55,7 @@
 					title="Right-Click to download, Click to copy code"
 					class="flex flex-col items-center justify-center w-full h-full transition-all rounded-lg group hover:bg-theme-bg hover:shadow-box hover:dark:bg-[hsla(255,11%,15%,0.729)]"
 					@click.prevent="mySvgCode"
+				  :data-keyword="list"
 				>
 					<span
 						class="inline-flex w-8 h-8 mb-4 transition-all group-hover:w-12 group-hover:h-12 group-hover:mb-0"
