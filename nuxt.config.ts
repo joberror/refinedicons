@@ -20,7 +20,7 @@ export default defineNuxtConfig({
 				{
 					name: "copyright",
 					content:
-						"Bolarinwa Olakunle (Joberror) - " + new Date().getFullYear(),
+						`Bolarinwa Olakunle (Joberror) - ${new Date().getFullYear()}`,
 				},
 				{ hid: "description", name: "description", content: "" },
 				{ name: "format-detection", content: "telephone=yes" },

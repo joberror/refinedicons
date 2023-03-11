@@ -116,7 +116,7 @@
 					guide with little tweaks.
 				</small>
 				<ul
-					class="flex flex-row gap-4 px-6 py-4 mt-8 divide-x-2 rounded w-fit text-xl bg-[#5d5def1c] border-theme-primary-100 dark:bg-zinc-900 shadow-[3px_4px] transition-all duration-[.1s] ease-in-out shadow-theme-primary-900 hover:shadow-[5px_6px] hover:shadow-theme-primary-300"
+					class="max-sm:ml-auto max-sm:mr-auto flex flex-row gap-4 px-6 py-4 mt-8 divide-x-2 rounded w-fit text-xl bg-[#5d5def1c] border-theme-primary-100 dark:bg-zinc-900 shadow-[3px_4px] transition-all duration-[.1s] ease-in-out shadow-theme-primary-900 hover:shadow-[5px_6px] hover:shadow-theme-primary-300"
 				>
 					<li class="text-theme-primary-400 dark:text-theme-primary-200">
 						<span class="text-2xl font-semibold">{{ details.numOfIcons }}</span>
@@ -158,7 +158,7 @@
 				</form>
 			</div>
 			<div class="z-0 flex flex-wrap justify-center gap-16">
-				<svgGrid v-for="(cat, key) in allData" :cat="cat" :key="key" :ref="ref"/>
+				<svgGrid v-for="(cat, key) in allData" :cat="cat" :key="key"/>
 			</div>
 		</section>
 	</main>
