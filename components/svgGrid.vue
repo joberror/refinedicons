@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="flex flex-col w-fit h-fit max-w-full max-md:order-none bg-white border border-[rgba(11,19,36,0.07)] border-solid rounded-lg shadow-box dark:bg-[#17161bfb]"
+		class="flex flex-col w-fit h-fit max-w-full max-md:order-none bg-white border border-[rgba(11,19,36,0.07)] border-solid rounded-lg shadow-md dark:bg-[#17161bfb]"
 		:class="{ 'order-first': toggleGrid }"
 	>
 		<ul class="flex justify-between w-full py-2 pl-2">
@@ -20,12 +20,12 @@
 						></svg>
 					</span>
 					<span
-						before="+"
-						after="-"
+						data-before="+"
+						data-after="-"
 						class="text-sm text-slate-400"
 						:class="{
-							'before:content-[attr(before)]': !toggleGrid,
-							'before:content-[attr(after)]': toggleGrid,
+							'before:content-[attr(data-before)]': !toggleGrid,
+							'before:content-[attr(data-after)]': toggleGrid,
 						}"
 					></span>
 				</button>
@@ -55,6 +55,7 @@
 					title="Right-Click to download, Click to copy code"
 					class="flex flex-col items-center justify-center w-full h-full transition-all rounded-lg group hover:bg-theme-bg hover:shadow-box hover:dark:bg-[hsla(255,11%,15%,0.729)]"
 					@click.prevent="mySvgCode"
+				  :data-keyword="list"
 				>
 					<span
 						class="inline-flex w-8 h-8 mb-4 transition-all group-hover:w-12 group-hover:h-12 group-hover:mb-0"
@@ -65,14 +66,14 @@
 						></svg>
 					</span>
 					<em
-						class="truncate text-[12px] not-italic text-gray-400 group-hover:hidden group-hover:invisible transition-all dark:text-[#31313a]"
+						class="truncate text-[12px] not-italic bg-slate-100/50 dark:bg-transparent text-gray-400 group-hover:hidden group-hover:invisible transition-all dark:text-[#31313a]"
 						>{{ list }}</em
 					>
 				</a>
 			</li>
 		</ul>
 		<ul
-			class="inline-flex justify-between w-full p-2 mt-2 bg-[rgba(217,219,233,0.5)] dark:bg-[#15141afb] text-gray-400 dark:text-theme-primary-300"
+			class="inline-flex justify-between w-full py-2 px-4 mt-2 bg-[rgba(217,219,233,0.46)] dark:bg-[#111116fb] text-gray-600 dark:text-theme-primary-300"
 		>
 			<li class="capitalize">{{ cat.category }}</li>
 			<li class="font-bold">{{ cat.total }}</li>

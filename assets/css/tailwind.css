@@ -18,4 +18,8 @@
   .notify-visible {
     @apply visible
   }
+
+  .showcase-icon {
+    @apply animate-fade animate-infinite animate-delay-200 animate-ease-out animate-alternate-reverse animate-fill-backwards shadow-md shadow-theme-primary-900
+  }
 }

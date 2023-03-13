@@ -12,11 +12,13 @@ const util = require("util");
 
 // Set defaults
 let // main svg source
-	source = "./public/svg/",
-	// data file
-	data = "./content/data.json",
-	// store category name, icons and total
-	allData = [];
+source = "./public/svg/";
+// data file
+let // main svg source
+data = "./content/data.json";
+// store category name, icons and total
+let // main svg source
+allData = [];
 
 // read svg folder, store category and icons in an array
 fs.readdirSync(source).forEach((cat) => {
@@ -34,7 +36,7 @@ fs.writeFile(data, JSON.stringify(allData), 'utf8', (err) => {
 	if (err) {
 		console.log(err);
 	} else {
-		console.log("Saved data to " + data);
+		console.log(`Saved data to ${data}`);
 	}
 });
 
@@ -45,7 +47,7 @@ async function zipFolder(source, dest) {
 		const zipFile = new zip();
 		zipFile.addLocalFolder(source);
 		zipFile.writeZip(dest);
-		console.log("Zipped folder to " + dest);
+		console.log(`Zipped folder to ${dest}`);
 	} catch (err) {
 		console.log(err);
 	}

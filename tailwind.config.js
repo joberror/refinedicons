@@ -3,7 +3,7 @@ const colors = require("tailwindcss/colors");
 module.exports = {
 	darkMode: "class",
 	content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
-	plugins: [require("tailwindcss-scrollbar")],
+	plugins: [require("tailwindcss-scrollbar"), require("tailwindcss-animated")],
 	theme: {
 		extend: {
 			colors: {
