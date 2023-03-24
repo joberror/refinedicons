@@ -5,8 +5,8 @@
  */
 
 const fs = require("fs");
-const path = require("path");
-const util = require("util");
+const zip = require("adm-zip");
+const zipFile = new zip()
 
 // -------------- Runtime and processing -------------------
 
@@ -14,45 +14,50 @@ const util = require("util");
 let // main svg source
 source = "./public/svg/";
 // data file
-let // main svg source
+let
+// main svg source
 data = "./content/data.json";
 // store category name, icons and total
-let // main svg source
+let
 allData = [];
+let
+// svg zip file
+refined = `${source}refinedicons-all.zip`;
 
-// read svg folder, store category and icons in an array
-fs.readdirSync(source).forEach((cat) => {
-	let tmp = {};
-	tmp.category = cat;
-	tmp.icons = fs
-		.readdirSync(source + cat)
-		.map((file) => file.split(".").slice(0, -1).join("."));
-	tmp.total = tmp.icons.length;
-	allData.push(tmp);
-});
-
-// save the data captured above in a JSON file with a success and error callback
-fs.writeFile(data, JSON.stringify(allData), 'utf8', (err) => {
-	if (err) {
-		console.log(err);
-	} else {
-		console.log(`Saved data to ${data}`);
-	}
-});
-
-// create zip file of the svg folder using adm-zip module in async function with try and catch method
-async function zipFolder(source, dest) {
-	try {
-		const zip = require("adm-zip");
-		const zipFile = new zip();
-		zipFile.addLocalFolder(source);
-		zipFile.writeZip(dest);
-		console.log(`Zipped folder to ${dest}`);
-	} catch (err) {
-		console.log(err);
-	}
+// A function to delete a file
+async function deleteFile(file) {
+	fs.rmSync(file, {recursive: true, force: true})
 }
-zipFolder(source, './public/svg/refinedicons-all.zip')
+
+// Delete file and create a new generated zip file
+deleteFile(refined).then(() => {
+	// read svg folder, store category and icons in an array
+	fs.readdirSync(source).forEach((cat) => {
+		let tmp = {};
+		tmp.category = cat;
+		tmp.icons = fs
+			.readdirSync(source + cat)
+			.map((file) => file.split(".").slice(0, -1).join("."));
+		tmp.total = tmp.icons.length;
+		allData.push(tmp);
+	});
+}).then(() => {
+	// save the data captured above in a JSON file with a success and error callback
+	fs.writeFile(data, JSON.stringify(allData), "utf8", (err) => {
+		if (err) {
+			console.log(err);
+		} else {
+			console.log(`Saved data to ${data}`);
+		}
+	});
+}).then(() => {
+	// zip the svg folder
+	zipFile.addLocalFolder(source);
+	zipFile.writeZip(refined);
+	console.log(`Zipped folder saved to ${refined}`);
+}).catch((error) => {
+	console.error('Error:', error)
+});
 
 // --------------- Debugging and test ----------------------
 
