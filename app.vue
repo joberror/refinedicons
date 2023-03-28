@@ -158,7 +158,7 @@
 				</form>
 			</div>
 			<div class="z-0 flex flex-wrap justify-center gap-16">
-				<svgGrid v-for="(cat, key) in allData" :cat="cat" :key="key"/>
+				<svgGrid v-for="(cat, key) in allData" :cat="cat" :key="key" />
 			</div>
 		</section>
 	</main>
@@ -166,116 +166,97 @@
 </template>
 
 <script>
-import data from "@/content/data.json";
-const allData = data;
-
-const allIcons = allData.map(function(sub) {
-  return sub.icons.flat(1); // flatten each subarray by one level
-}).flat(1).sort();
+import allData from "@/content/data.json";
 
 export default {
 	data() {
-		let svgLoad, submitSearch;
 		return {
 			search: "",
-			svgLoad,
-			submitSearch
 		};
+	},
+	// Add a computed property to the Vue component to return an array of all icon objects
+	computed: {
+		allIcons() {
+			// Return an array of all icon objects in `allData`
+			return allData.flatMap((sub) => sub.icons.flat(1)).sort();
+		},
 	},
 	methods: {
+		// Process search input
 		handleSearch(e) {
-			// Check for exact match and return the string
-			this.search = allIcons.find((name) => name.match(new RegExp(e.target.value, "gi")) && name.length === e.target.value.length)
-			// if extra match isn't met, pick the first one in the array
-			if (this.search === undefined) {
-				this.search = allIcons.find((name) => name.match(new RegExp(e.target.value , "gi")))
-			}
-		}
-	},
-	mounted() {
-		this.svgLoad = () => {
-			// Find our SVGs.
-			const svgs = document.querySelectorAll("svg[data-url]");
-			const svgsLen = svgs.length;
-			// Loop and process.
-			for (let i = 0; i < svgsLen; ++i) {
-				// Grab the URL and delete the attribute; we no longer
-				// need it.
-				if (svgs[i].innerHTML) svgs[i].textContent = "";
-				let url = svgs[i].getAttribute("data-url");
-				svgs[i].removeAttribute("data-url");
-				// We'll let another function handle the actual fetching
-				// so we can use the async modifier.
-				fetchSvg(url, svgs[i]);
-			}
-		};
-		let /**
-			 * Fetch the SVG
-			 * @param {String} url URL
-			 * @param {Element} el Element
-			 * @returns {Promise<void>}
-			 */
-			fetchSvg = async (url, el) => {
-				// Dog bless fetch() and await, though be advised you'll need
-				// to transpile this down to ES5 for older browsers.
-				let response = await fetch(url);
-				let data = await response.text();
+			// Retrieve a lowercase search query string from the target of the event.
+			const query = e.target.value.toLowerCase();
 
-				// This response should be an XML document we can parse.
-				const parser = new DOMParser();
-				const parsed = parser.parseFromString(data, "image/svg+xml");
-
-				// The file might not actually begin with "<svg>", and
-				// for that matter there could be none, or many.
-				let /** @type {SVGElement} */ svg = parsed.getElementsByTagName("svg");
-
-				if (svg.length) {
-					// But we only want the first.
-					svg = svg[0];
-
-					// Copy over the attributes first.
-					const attr = svg.attributes;
-					const attrLen = attr.length;
-					for (let i = 0; i < attrLen; ++i) {
-						if (attr[i].specified) {
-							// Merge classes.
-							if ("class" === attr[i].name) {
-								const classes = attr[i].value
-									.replace(/\s+/g, " ")
-									.trim()
-									.split(" ");
-								const classesLen = classes.length;
-								for (let j = 0; j < classesLen; ++j) {
-									el.classList.add(classes[j]);
-								}
-							}
-							// Add/replace anything else.
-							else {
-								el.setAttribute(attr[i].name, attr[i].value);
-							}
+			// Search for an icon name in lower case within the `allIcons` array, such that the icon name starts with the search query string:
+			// If a matching icon name is found, it is assigned to `this.search`.
+			// The || "" at the end sets `this.search` to an empty string if no matching icon is found.
+			this.search =
+				this.allIcons.find((name) => name.toLowerCase().startsWith(query)) ||
+				"";
+		},
+		async fetchSvg(url, el) {
+			const response = await fetch(url);
+			const data = await response.text();
+			const parser = new DOMParser();
+			const parsed = parser.parseFromString(data, "image/svg+xml");
+			const svg = parsed.getElementsByTagName("svg")[0];
+			const attr = svg.attributes;
+			const attrLen = attr.length;
+			for (let i = 0; i < attrLen; ++i) {
+				if (attr[i].specified) {
+					if ("class" === attr[i].name) {
+						const classes = attr[i].value
+							.replace(/\s+/g, " ")
+							.trim()
+							.split(" ");
+						const classesLen = classes.length;
+						for (let j = 0; j < classesLen; ++j) {
+							el.classList.add(classes[j]);
 						}
-					}
-					// Now transfer over the children. Note: IE does not
-					// assign an innerHTML property to SVGs, so we need to
-					// go node by node.
-					while (svg.childNodes.length) {
-						el.appendChild(svg.childNodes[0]);
+					} else {
+						el.setAttribute(attr[i].name, attr[i].value);
 					}
 				}
-			};
-		this.svgLoad();
+			}
+			while (svg.childNodes.length) {
+				el.appendChild(svg.childNodes[0]);
+			}
+		},
+		async loadSvg() {
+			const svgs = document.querySelectorAll("svg[data-url]");
+			const svgsLen = svgs.length;
+			for (let i = 0; i < svgsLen; ++i) {
+				if (svgs[i].innerHTML) svgs[i].textContent = "";
+				const url = svgs[i].getAttribute("data-url");
+				svgs[i].removeAttribute("data-url");
+				await this.fetchSvg(url, svgs[i]);
+			}
+		},
+		// Search functionality
+		async submitSearch() {
+			const el = document.querySelector(`a[data-keyword="${this.search}"]`);
 
-		this.submitSearch = () => {
-			let el = document.querySelector(`a[data-keyword="${this.search}"]`);
+			// If there is no icon found, return early
+			if (!el) {
+				return;
+			}
+			// Select and navigate to the icon found
 			el.classList.add("showcase-icon");
+			// Remove attached class after 6 seconds
 			setTimeout(() => {
 				el.classList.remove("showcase-icon");
 			}, 6000);
-			el.scrollIntoView({ behavior: 'smooth' });
-		}
+
+			// Scroll to the icon
+			el.scrollIntoView({ behavior: "smooth" });
+		},
+	},
+	mounted() {
+		this.loadSvg();
+		this.submitSearch();
 	},
 	updated() {
-		this.svgLoad();
+		this.loadSvg();
 	},
 };
 </script>
