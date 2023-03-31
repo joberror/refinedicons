@@ -1,27 +1,41 @@
 <template>
 	<div
 		class="flex flex-col w-fit h-fit max-w-full max-md:order-none bg-white border border-[rgba(11,19,36,0.07)] border-solid rounded-lg shadow-md dark:bg-[#17161bfb]"
-		:class="{ 'order-first': toggleGrid }">
+		:class="{ 'order-first': toggleGrid }"
+	>
 		<ul class="flex justify-between w-full py-2 pl-2">
 			<li>
-				<button @click="toggleGrid = !toggleGrid" class="inline-flex items-center duration-200 ease-in"
-					title="View all icons in this category">
+				<button
+					@click="toggleGrid = !toggleGrid"
+					class="inline-flex items-center duration-200 ease-in"
+					title="View all icons in this category"
+				>
 					<span class="w-6 h-6">
-						<svg data-url="/ui/chevron-down.svg"
-							class="w-full h-full duration-200 ease-out stroke-slate-400 dark:stroke-zinc-700" :class="{
+						<svg
+							data-url="/ui/chevron-down.svg"
+							class="w-full h-full duration-200 ease-out stroke-slate-400 dark:stroke-zinc-700"
+							:class="{
 								'rotate-180 transform duration-200 ease-in': toggleGrid,
-							}"></svg>
+							}"
+						></svg>
 					</span>
-					<span data-before="+" data-after="-" class="text-sm text-slate-400" :class="{
-						'before:content-[attr(data-before)]': !toggleGrid,
-						'before:content-[attr(data-after)]': toggleGrid,
-					}"></span>
+					<span
+						data-before="+"
+						data-after="-"
+						class="text-sm text-slate-400"
+						:class="{
+							'before:content-[attr(data-before)]': !toggleGrid,
+							'before:content-[attr(data-after)]': toggleGrid,
+						}"
+					></span>
 				</button>
 			</li>
 			<li id="notify" class="invisible text-gray-500">
 				svg copied!
 				<span class="inline-flex w-3 h-3">
-					<span class="inline-flex w-full h-full bg-gray-400 rounded-full opacity-75 animate-ping"></span>
+					<span
+						class="inline-flex w-full h-full bg-gray-400 rounded-full opacity-75 animate-ping"
+					></span>
 					<span class="inline-flex w-3 h-3 bg-gray-500 rounded-full"></span>
 				</span>
 			</li>
@@ -31,25 +45,36 @@
 			:class="{
 				'h-max grid-cols-9 max-xl:grid-cols-6 max-lg:grid-cols-4 max-sm:grid-cols-3':
 					toggleGrid,
-			}">
+			}"
+		>
 			<li v-for="list in cat.icons">
-				<a target="_blank" rel="noopener noreferrer" :href="'svg/' + cat.category + '/' + list + '.svg'"
+				<a
+					target="_blank"
+					rel="noopener noreferrer"
+					:href="'svg/' + cat.category + '/' + list + '.svg'"
 					title="Right-Click to download, Click to copy code"
 					class="flex flex-col items-center justify-center w-full h-full transition-all rounded-lg group hover:bg-theme-bg hover:shadow-box hover:dark:bg-[hsla(255,11%,15%,0.729)]"
-					@click.prevent="mySvgCode" :data-keyword="list.toLowerCase()">
-					<span class="inline-flex w-8 h-8 mb-4 transition-all group-hover:w-12 group-hover:h-12 group-hover:mb-0">
+					@click.prevent="mySvgCode"
+					:data-keyword="list.toLowerCase()"
+				>
+					<span
+						class="inline-flex w-8 h-8 mb-4 transition-all group-hover:w-12 group-hover:h-12 group-hover:mb-0"
+					>
 						<svg
 							class="w-full stroke-theme-primary-200 group-hover:stroke-theme-primary-400 dark:group-hover:stroke-white"
-							:data-url="'/svg/' + cat.category + '/' + list + '.svg'"></svg>
+							:data-url="'/svg/' + cat.category + '/' + list + '.svg'"
+						></svg>
 					</span>
 					<em
-						class="truncate text-[12px] not-italic text-gray-400 group-hover:hidden group-hover:invisible transition-all dark:text-[#31313a]">{{
-							list }}</em>
+						class="truncate text-[12px] not-italic text-gray-400 group-hover:hidden group-hover:invisible transition-all dark:text-[#31313a]"
+						>{{ list }}</em
+					>
 				</a>
 			</li>
 		</ul>
 		<ul
-			class="inline-flex justify-between w-full py-2 px-4 mt-2 bg-[rgba(217,219,233,0.46)] dark:bg-[#111116fb] text-gray-600 dark:text-theme-primary-300">
+			class="inline-flex justify-between w-full py-2 px-4 mt-2 bg-[rgba(217,219,233,0.46)] dark:bg-[#111116fb] text-gray-600 dark:text-theme-primary-300"
+		>
 			<li class="capitalize">{{ cat.category }}</li>
 			<li class="font-bold">{{ cat.total }}</li>
 		</ul>
@@ -63,35 +88,43 @@ export default {
 		mySvgCode() {
 			const { copy } = useClipboard();
 			return (event) => {
-				let html;
-				const el = event.target;
-				const note = el.closest("ul").previousElementSibling.querySelector("#notify");
-				//Optimization 1 - Using switch case instead of multiple if-else conditions.
-				switch (el.tagName) {
+				// Destructuring the event.target object
+				const { tagName, children, innerHTML, parentNode } = event.target;
+				const closestUl = parentNode.closest("ul");
+				const note = closestUl.previousElementSibling.querySelector("#notify");
+
+				let html = "";
+				switch (tagName) {
 					case "A":
-						html = el.children[0].children[0].innerHTML;
+						html = children[0].children[0].innerHTML;
 						break;
 					case "svg":
-						html = el.innerHTML;
+						html = innerHTML;
 						break;
 					default:
-						html = el.parentNode.innerHTML;
+						html = parentNode.innerHTML;
 				}
+
 				copy(
 					`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">${html}</svg>`
 				);
-				note.classList.toggle("invisible");
-				setTimeout(() => {
-					note.classList.toggle("invisible");
-				}, 3000);
+				note.animate(
+					{
+						visibility: "visible",
+					},
+					{
+						duration: 3000,
+						easing: "linear",
+					}
+				);
 			};
-		}
+		},
 	},
 	props: ["cat", "key"],
 	data() {
 		return {
-			toggleGrid: false
+			toggleGrid: false,
 		};
-	}
+	},
 };
 </script>
