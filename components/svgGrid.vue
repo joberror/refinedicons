@@ -30,7 +30,7 @@
 					></span>
 				</button>
 			</li>
-			<li id="notify" class="invisible text-gray-500">
+			<li id="notify" class="text-gray-500 opacity-0">
 				svg copied!
 				<span class="inline-flex w-3 h-3">
 					<span
@@ -110,11 +110,12 @@ export default {
 				);
 				note.animate(
 					{
-						visibility: "visible",
+						opacity: [1, 0]
 					},
 					{
-						duration: 3000,
+						duration: 6000,
 						easing: "linear",
+						endDelay: 3000
 					}
 				);
 			};
