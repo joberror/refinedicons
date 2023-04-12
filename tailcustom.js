@@ -2,6 +2,6 @@ const { format } = require("fgtw");
 
 // get figma gradient
 const gradient =
-	"background: linear-gradient(65.15deg, #18161C -17.14%, #171224 45.94%, #100F13 79.24%)";
+	"background: radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.33) 0px, rgba(0, 0, 0, 0) 50%), radial-gradient(at 98% 1%, rgba(212, 25, 118, 0.33) 0px, rgba(0, 0, 0, 0) 50%)";
 console.log(format(gradient));
 console.log("copied to clipboard");

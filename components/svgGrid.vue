@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="flex flex-col w-fit h-fit max-w-full max-md:order-none bg-white border border-[rgba(11,19,36,0.07)] border-solid rounded-lg shadow-md dark:bg-[#17161bfb]"
+		class="flex flex-col max-w-full duration-300 ease-linear border border-solid rounded-lg w-fit h-fit max-md:order-none bg-gray-50/20 border-indigo-200/60 hover:bg-white dark:bg-[#191724] dark:border-[#211e38] brd-shadow"
 		:class="{ 'order-first': toggleGrid }"
 	>
 		<ul class="flex justify-between w-full py-2 pl-2">
@@ -66,14 +66,14 @@
 						></svg>
 					</span>
 					<em
-						class="truncate text-[12px] not-italic text-gray-400 group-hover:hidden group-hover:invisible transition-all dark:text-[#31313a]"
+						class="truncate text-[12px] not-italic text-gray-400 group-hover:hidden group-hover:invisible transition-all dark:text-[#3b3b46]"
 						>{{ list }}</em
 					>
 				</a>
 			</li>
 		</ul>
 		<ul
-			class="inline-flex justify-between w-full py-2 px-4 mt-2 bg-[rgba(217,219,233,0.46)] dark:bg-[#111116fb] text-gray-600 dark:text-theme-primary-300"
+			class="inline-flex justify-between w-full px-4 py-2 mt-2 text-gray-600 rounded-b-lg bg-theme-primary-900/10 dark:text-stone-300 dark:bg-[#1c1929]"
 		>
 			<li class="capitalize">{{ cat.category }}</li>
 			<li class="font-bold">{{ cat.total }}</li>

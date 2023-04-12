@@ -1,7 +1,7 @@
 <template>
 	<main>
 		<section
-			class="fixed inset-0 w-[45vw] max-md:w-full max-md:relative bg-[linear-gradient(68.8deg,#EBE4FF_2.16%,#FFFFFF_85.7%)] dark:bg-[linear-gradient(120.52deg,#15131D_36.96%,#070709_94.98%)]"
+			class="fixed inset-0 w-[45vw] max-md:w-full max-md:relative bg-[linear-gradient(68.8deg,#EBE4FF_2.16%,#FFFFFF_85.7%)] dark:bg-[linear-gradient(120.52deg,#15131D_36.96%,#1C1A29_94.98%)]"
 		>
 			<div class="flex flex-col w-full p-8 max-sm:p-2">
 				<header class="flex flex-row items-center justify-between w-full">
@@ -76,7 +76,7 @@
 					</ul>
 				</header>
 				<div
-					class="w-full px-6 flex flex-row divide-y divide-x divide-[#E0E5FE] dark:divide-[#181C2D] flex-wrap justify-center py-[8vh] mt-8 max-sm:py-[2vh] max-sm:mt-2 max-sm:px-2 bg-[linear-gradient(170.42deg,#FEFDFF_33.23%,#FFFFFF_33.23%,#EEEEFF_81.16%)] dark:bg-[linear-gradient(65.15deg,#18161C_-17.14%,#171224_45.94%,#100F13_79.24%)]"
+					class="w-full px-6 flex flex-row divide-y divide-x divide-[#E0E5FE] dark:divide-[#181C2D] flex-wrap justify-center py-[8vh] mt-8 max-sm:py-[2vh] max-sm:mt-2 max-sm:px-2 bg-[linear-gradient(170.42deg,#FEFDFF_33.23%,#FFFFFF_33.23%,#EEEEFF_81.16%)] dark:bg-[linear-gradient(65.15deg,#18161C_-17.14%,#171224_45.94%,#1C1A29_79.24%)]"
 				>
 					<ul
 						v-for="rom in svgPpt"
@@ -89,11 +89,11 @@
 							<span class="w-8 h-8">
 								<svg
 									:data-url="'/ui/' + rom.svg"
-									class="w-full stroke-[#ABACF1]"
+									class="w-full stroke-theme-primary-900/50"
 								></svg>
 							</span>
 							<em
-								class="ml-4 not-italic font-semibold text-theme-primary-400 dark:text-[#A1A2BA]"
+								class="ml-4 not-italic font-semibold text-theme-primary-400 dark:text-stone-300"
 								>{{ rom.ppt }}</em
 							>
 						</li>

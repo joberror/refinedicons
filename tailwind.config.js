@@ -28,6 +28,8 @@ module.exports = {
 			},
 			backgroundImage: {
 				viewer: "url('ui/viewer-bg.svg')",
+				bgLight:
+					"radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.33) 0px, rgba(0, 0, 0, 0) 50%), radial-gradient(at 98% 1%, rgba(212, 25, 118, 0.33) 0px, rgba(0, 0, 0, 0) 50%)",
 			},
 			gridTemplateRows: {
 				all: "repeat(auto-fill, minmax(96px, 1fr))",
@@ -47,6 +49,8 @@ module.exports = {
 			slate: colors.slate,
 			zinc: colors.zinc,
 			neutral: colors.neutral,
+			stone: colors.stone,
+			indigo: colors.indigo,
 		},
 	},
 	variants: {

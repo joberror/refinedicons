@@ -8,7 +8,7 @@
   }
 
   body {
-    @apply bg-theme-bg dark:bg-theme-dark-bg overflow-y-auto scrollbar-w-1 scrollbar-thumb-white scrollbar-track-gray-200 dark:scrollbar-thumb-zinc-900 dark:scrollbar-track-zinc-800 scroll-smooth
+    @apply bg-[radial-gradient(at_0%_0%,rgba(79,70,229,0.33)_0px,rgba(0,0,0,0)_35%),radial-gradient(at_98%_1%,rgba(93,95,239,0.07)_0px,rgba(0,0,0,0)_60%)] dark:bg-[radial-gradient(at_0%_0%,rgba(79,70,229,0.33)_0px,rgba(28,26,41,1)_35%),radial-gradient(at_98%_1%,rgba(93,95,239,0.07)_0px,rgba(28,26,41,1)_60%)] overflow-y-auto scrollbar-w-1 scrollbar-thumb-white scrollbar-track-gray-200 dark:scrollbar-thumb-zinc-900 dark:scrollbar-track-zinc-800 scroll-smooth
   }
 
   .svgBox li {
@@ -21,5 +21,9 @@
 
   .showcase-icon {
     @apply animate-fade animate-infinite animate-delay-200 animate-ease-out animate-alternate-reverse animate-fill-backwards shadow-2xl shadow-theme-primary-900
+  }
+
+  .brd-shadow {
+    @apply shadow-[1px_2px] transition-all duration-[.1s] ease-in-out shadow-theme-primary-900/40 hover:shadow-[3px_4px] hover:shadow-theme-primary-300
   }
 }
