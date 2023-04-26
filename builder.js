@@ -1,7 +1,10 @@
 /**
- * This file when run with node generates the data of the icons and automatically save it
- * in the 'content/data.json' file.
- * So after adding/removing any icons, this file should be run to update the data.
+ * This is the builder.js file.
+ * It is the entry point of the application.
+ * Builds all necessary data for the web page to function.
+ * Creates the text file to showcase all icons and zip all SVG icons.
+ * * NB: This file must be run with Node.js after adding or removing icons.
+ * @author Bolarinwa Olakunle
  */
 
 const fs = require("fs");

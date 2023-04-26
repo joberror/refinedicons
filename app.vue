@@ -167,6 +167,8 @@
 
 <script>
 import allData from "@/content/data.json";
+import LogRocket from 'logrocket';
+LogRocket.init('vczane/iamjoberror');
 
 export default {
 	data() {
