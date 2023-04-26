@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const colors = require("tailwindcss/colors");
 
 module.exports = {
@@ -8,16 +9,16 @@ module.exports = {
 		extend: {
 			colors: {
 				theme: {
-					//Generic
+					// Generic
 					primary: {
 						100: "#A0A3BD",
-						200: "#6F6C90", //primary
+						200: "#6F6C90", // primary
 						300: "#514F6E",
-						400: "#28283E", //text
-						900: "#5D5FEF", //figma
+						400: "#28283E", // text
+						900: "#5D5FEF", // figma
 					},
 					bg: "#EFF0F6",
-					//Dark theme
+					// Dark theme
 					dark: {
 						bg: "#0F0E14",
 					},

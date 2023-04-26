@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const { format } = require("fgtw");
 
 // get figma gradient

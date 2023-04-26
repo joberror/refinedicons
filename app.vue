@@ -1,10 +1,10 @@
 <template>
 	<main>
 		<section
-			class="fixed inset-0 w-[45vw] max-md:w-full max-md:relative bg-[linear-gradient(68.8deg,#EBE4FF_2.16%,#FFFFFF_85.7%)] dark:bg-[linear-gradient(120.52deg,#15131D_36.96%,#1C1A29_94.98%)]"
+			class="fixed inset-0 w-[45vw] bg-[linear-gradient(68.8deg,#EBE4FF_2.16%,#FFFFFF_85.7%)] dark:bg-[linear-gradient(120.52deg,#15131D_36.96%,#1C1A29_94.98%)] max-md:relative max-md:w-full"
 		>
-			<div class="flex flex-col w-full p-8 max-sm:p-2">
-				<header class="flex flex-row items-center justify-between w-full">
+			<div class="flex w-full flex-col p-8 max-sm:p-2">
+				<header class="flex w-full flex-row items-center justify-between">
 					<ul class="flex flex-row items-center gap-2">
 						<li class="w-8 max-sm:w-6">
 							<svg
@@ -13,7 +13,7 @@
 							></svg>
 						</li>
 						<li
-							class="text-2xl font-semibold max-sm:text-xl text-theme-primary-200"
+							class="text-2xl font-semibold text-theme-primary-200 max-sm:text-xl"
 						>
 							refinedicons
 						</li>
@@ -22,20 +22,20 @@
 						<li>
 							<label
 								for="autoSaver"
-								class="relative inline-flex items-center cursor-pointer select-none"
+								class="relative inline-flex cursor-pointer select-none items-center"
 							>
 								<input
+									id="autoSaver"
 									type="checkbox"
 									name="autoSaver"
-									id="autoSaver"
 									class="sr-only"
 									@click="toggleDark()"
 								/>
 								<span
-									class="flex h-[22px] w-[50px] max-sm:w-8 max-sm:h-4 items-center rounded-full bg-[#e8e8e9] p-1 duration-200 dark:bg-theme-primary-400"
+									class="flex h-[22px] w-[50px] items-center rounded-full bg-[#e8e8e9] p-1 duration-200 dark:bg-theme-primary-400 max-sm:h-4 max-sm:w-8"
 								>
 									<span
-										class="w-4 h-4 duration-200 bg-white rounded-full max-sm:w-3 max-sm:h-3 dark:ml-auto"
+										class="h-4 w-4 rounded-full bg-white duration-200 dark:ml-auto max-sm:h-3 max-sm:w-3"
 									></span>
 								</span>
 							</label>
@@ -45,9 +45,9 @@
 							<a
 								href="#"
 								title="Get it on Figma as a component"
-								class="flex flex-row px-4 py-3 font-bold text-center duration-500 border-solid rounded ring-1 ring-inset group max-sm:px-2 max-sm:py-2 ring-theme-primary-100 text-theme-primary-900 hover:bg-theme-primary-900 hover:text-white hover:ring-0 dark:ring-theme-primary-300"
+								class="group flex flex-row rounded border-solid px-4 py-3 text-center font-bold text-theme-primary-900 ring-1 ring-inset ring-theme-primary-100 duration-500 hover:bg-theme-primary-900 hover:text-white hover:ring-0 dark:ring-theme-primary-300 max-sm:p-2"
 							>
-								<span class="hidden w-6 h-6 max-md:inline-flex">
+								<span class="hidden h-6 w-6 max-md:inline-flex">
 									<svg
 										data-url="/ui/figma.svg"
 										class="w-full stroke-theme-primary-900 group-hover:stroke-white"
@@ -60,15 +60,15 @@
 							<a
 								href="/svg/refinedicons-all.zip"
 								title="Download entire icon package"
-								class="flex flex-row justify-between px-4 py-3 duration-500 rounded group max-sm:px-2 max-sm:py-2 bg-theme-primary-300 hover:bg-theme-primary-900"
+								class="group flex flex-row justify-between rounded bg-theme-primary-300 px-4 py-3 duration-500 hover:bg-theme-primary-900 max-sm:p-2"
 							>
 								<span class="pr-6 font-bold text-white max-md:hidden"
 									>v{{ details.version }}</span
 								>
-								<span class="w-6 h-6">
+								<span class="h-6 w-6">
 									<svg
 										data-url="/ui/package.svg"
-										class="w-full stroke-theme-primary-100 group-hover:stroke-white transition-all duration-[.3s] ease-in-out group-hover:transition-all group-hover:duration-[.3s] group-hover:ease-in-out"
+										class="w-full stroke-theme-primary-100 transition-all duration-[.3s] ease-in-out group-hover:stroke-white group-hover:transition-all group-hover:duration-[.3s] group-hover:ease-in-out"
 									></svg>
 								</span>
 							</a>
@@ -76,38 +76,39 @@
 					</ul>
 				</header>
 				<div
-					class="w-full px-6 flex flex-row divide-y divide-x divide-[#E0E5FE] dark:divide-[#181C2D] flex-wrap justify-center py-[8vh] mt-8 max-sm:py-[2vh] max-sm:mt-2 max-sm:px-2 bg-[linear-gradient(170.42deg,#FEFDFF_33.23%,#FFFFFF_33.23%,#EEEEFF_81.16%)] dark:bg-[linear-gradient(65.15deg,#18161C_-17.14%,#171224_45.94%,#1C1A29_79.24%)]"
+					class="mt-8 flex w-full flex-row flex-wrap justify-center divide-x divide-y divide-[#E0E5FE] bg-[linear-gradient(170.42deg,#FEFDFF_33.23%,#FFFFFF_33.23%,#EEEEFF_81.16%)] px-6 py-[8vh] dark:divide-[#181C2D] dark:bg-[linear-gradient(65.15deg,#18161C_-17.14%,#171224_45.94%,#1C1A29_79.24%)] max-sm:mt-2 max-sm:px-2 max-sm:py-[2vh]"
 				>
 					<ul
 						v-for="rom in svgPpt"
-						class="box-border flex flex-col w-1/3 px-12 py-10 max-sm:w-1/2 max-sm:px-8 max-sm:py-8"
+						:key="rom.id"
+						class="box-border flex w-1/3 flex-col px-12 py-10 max-sm:w-1/2 max-sm:p-8"
 					>
-						<li class="mb-4 text-[#A1A2BA] dark:text-theme-primary-300 text-lg">
+						<li class="mb-4 text-lg text-[#A1A2BA] dark:text-theme-primary-300">
 							{{ rom.name }}
 						</li>
 						<li class="inline-flex flex-row items-center">
-							<span class="w-8 h-8">
+							<span class="h-8 w-8">
 								<svg
 									:data-url="'/ui/' + rom.svg"
 									class="w-full stroke-theme-primary-900/50"
 								></svg>
 							</span>
 							<em
-								class="ml-4 not-italic font-semibold text-theme-primary-400 dark:text-stone-300"
+								class="ml-4 font-semibold not-italic text-theme-primary-400 dark:text-stone-300"
 								>{{ rom.ppt }}</em
 							>
 						</li>
 					</ul>
 				</div>
 			</div>
-			<div class="mx-8 max-w-[380px] max-sm:max-w-[340px] pb-8">
+			<div class="mx-8 max-w-[380px] pb-8 max-sm:max-w-[340px]">
 				<p class="text-3xl text-theme-primary-400 dark:text-theme-primary-100">
 					Crafted with care: unique icons for web developers and designers.
 				</p>
-				<small class="inline-block mt-3 text-gray-500">
+				<small class="mt-3 inline-block text-gray-500">
 					Please note that these icons follows
 					<a
-						class="underline duration-400 text-theme-primary-900 hover:text-theme-primary-300"
+						class="text-theme-primary-900 underline duration-300 hover:text-theme-primary-300"
 						href="https://m2.material.io/design/iconography/system-icons.html"
 						title="Google Material System icon guide"
 					>
@@ -116,14 +117,14 @@
 					guide with little tweaks.
 				</small>
 				<ul
-					class="max-sm:ml-auto max-sm:mr-auto flex flex-row gap-4 px-6 py-4 mt-8 divide-x-2 rounded w-fit text-xl bg-[#5d5def1c] border-theme-primary-100 dark:bg-zinc-900 shadow-[3px_4px] transition-all duration-[.1s] ease-in-out shadow-theme-primary-900 hover:shadow-[5px_6px] hover:shadow-theme-primary-300"
+					class="mt-8 flex w-fit flex-row gap-4 divide-x-2 rounded border-theme-primary-100 bg-[#5d5def1c] px-6 py-4 text-xl shadow-[3px_4px] shadow-theme-primary-900 transition-all duration-[.1s] ease-in-out hover:shadow-[5px_6px] hover:shadow-theme-primary-300 dark:bg-zinc-900 max-sm:mx-auto"
 				>
 					<li class="text-theme-primary-400 dark:text-theme-primary-200">
 						<span class="text-2xl font-semibold">{{ details.numOfIcons }}</span>
 						<em class="italic">I</em>cons
 					</li>
 					<li
-						class="pl-4 border-black text-theme-primary-400 dark:border-theme-primary-100 dark:text-theme-primary-200"
+						class="border-black pl-4 text-theme-primary-400 dark:border-theme-primary-100 dark:text-theme-primary-200"
 					>
 						<span class="text-2xl font-semibold">{{
 							details.numOfCategory
@@ -133,32 +134,32 @@
 				</ul>
 			</div>
 		</section>
-		<section class="w-[55vw] ml-auto px-8 pb-8 max-md:w-full relative">
-			<div class="sticky top-0 z-10 flex justify-end w-full py-8">
+		<section class="relative ml-auto w-[55vw] px-8 pb-8 max-md:w-full">
+			<div class="sticky top-0 z-10 flex w-full justify-end py-8">
 				<form
-					class="flex flex-row justify-between py-2 pl-2 pr-2 transition-all duration-300 bg-white border rounded-full hover:w-1/3 max-sm:hover:w-full hover:pl-4 group ring-1 ring-theme-primary-100 ring-offset-4 ring-offset-white dark:ring-theme-primary-400 dark:bg-theme-primary-300 dark:ring-offset-theme-primary-300 dark:border-transparent"
+					class="group flex flex-row justify-between rounded-full border bg-white p-2 ring-1 ring-theme-primary-100 ring-offset-4 ring-offset-white transition-all duration-300 hover:w-1/3 hover:pl-4 dark:border-transparent dark:bg-theme-primary-300 dark:ring-theme-primary-400 dark:ring-offset-theme-primary-300 max-sm:hover:w-full"
 					@submit.prevent="submitSearch"
 				>
 					<input
 						type="text"
 						autocomplete="off"
 						placeholder="Search for icons"
-						class="hidden w-1/2 text-black bg-transparent border-0 outline-none dark:text-white max-w-max group-hover:inline-flex placeholder:text-black dark:placeholder:text-white"
+						class="hidden w-1/2 max-w-max border-0 bg-transparent text-black outline-none placeholder:text-black group-hover:inline-flex dark:text-white dark:placeholder:text-white"
 						@input="handleSearch"
 					/>
 					<em class="hidden text-sm text-gray-400 group-hover:inline">{{
 						search
 					}}</em>
-					<button class="w-6 h-6" @click="submitSearch">
+					<button class="h-6 w-6" @click="submitSearch">
 						<svg
 							data-url="ui/search.svg"
-							class="w-full stroke-theme-primary-300 dark:stroke-white stroke-[4]"
+							class="w-full stroke-theme-primary-300 stroke-[4] dark:stroke-white"
 						></svg>
 					</button>
 				</form>
 			</div>
 			<div class="z-0 flex flex-wrap justify-center gap-16">
-				<svgGrid v-for="(cat, key) in allData" :cat="cat" :key="key" />
+				<svgGrid v-for="(cat, key) in allData" :key="key" :cat="cat" />
 			</div>
 		</section>
 	</main>
@@ -183,6 +184,13 @@ export default {
 			return allData.flatMap((sub) => sub.icons.flat(1)).sort();
 		},
 	},
+	mounted() {
+		this.loadSvg();
+		this.submitSearch();
+	},
+	updated() {
+		this.loadSvg();
+	},
 	methods: {
 		// Process search input
 		handleSearch(e) {
@@ -206,7 +214,7 @@ export default {
 			const attrLen = attr.length;
 			for (let i = 0; i < attrLen; ++i) {
 				if (attr[i].specified) {
-					if ("class" === attr[i].name) {
+					if (attr[i].name === "class") {
 						const classes = attr[i].value
 							.replace(/\s+/g, " ")
 							.trim()
@@ -252,13 +260,6 @@ export default {
 			// Scroll to the icon
 			el.scrollIntoView({ behavior: "smooth" });
 		},
-	},
-	mounted() {
-		this.loadSvg();
-		this.submitSearch();
-	},
-	updated() {
-		this.loadSvg();
 	},
 };
 </script>

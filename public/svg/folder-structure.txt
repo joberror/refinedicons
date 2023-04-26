@@ -1,139 +1,140 @@
-└── arrows/
-    ├── chevron-down.svg
-    ├── chevron-up.svg
-    ├── chevron.svg
-    ├── contract.svg
-    ├── down-left.svg
-    ├── down-right.svg
-    ├── down.svg
-    ├── expand-all.svg
-    ├── expand.svg
-    ├── horizontal.svg
-    ├── left.svg
-    ├── place-x.svg
-    ├── place-y.svg
-    ├── right.svg
-    ├── top-left.svg
-    ├── top-right.svg
-    ├── up.svg
-    ├── vertical.svg
-└── browser/
-    ├── add-fav.svg
-    ├── back.svg
-    ├── browser.svg
-    ├── dev.svg
-    ├── downloads.svg
-    ├── extension.svg
-    ├── fav.svg
-    ├── feeds.svg
-    ├── forward.svg
-    ├── fullscreen.svg
-    ├── history.svg
-    ├── home.svg
-    ├── https.svg
-    ├── incognito.svg
-    ├── inspect.svg
-    ├── install-app.svg
-    ├── launch-app.svg
-    ├── link.svg
-    ├── offline.svg
-    ├── online.svg
-    ├── password.svg
-    ├── pin-tab.svg
-    ├── profile.svg
-    ├── read-mode.svg
-    ├── reload.svg
-    ├── remove-fav.svg
-    ├── search.svg
-    ├── send-to.svg
-    ├── stop.svg
-    ├── tab-add.svg
-    ├── update.svg
-    ├── vpn.svg
-    ├── window-new.svg
-└── editor/
-    ├── addition.svg
-    ├── align-center.svg
-    ├── align-justify.svg
-    ├── align-left.svg
-    ├── align-right.svg
-    ├── align-spread.svg
-    ├── bold.svg
-    ├── copy.svg
-    ├── copyright.svg
-    ├── cut.svg
-    ├── edit.svg
-    ├── equal.svg
-    ├── font.svg
-    ├── hash.svg
-    ├── italic.svg
-    ├── layers.svg
-    ├── list.svg
-    ├── multiply.svg
-    ├── note.svg
-    ├── null.svg
-    ├── paste.svg
-    ├── percent.svg
-    ├── print.svg
-    ├── quotes.svg
-    ├── redo.svg
-    ├── registered.svg
-    ├── ruler.svg
-    ├── save.svg
-    ├── strike-through.svg
-    ├── subscript.svg
-    ├── subtract.svg
-    ├── superscript.svg
-    ├── trademark.svg
-    ├── underline.svg
-    ├── undo.svg
-└── finance/
-    ├── asset.svg
-    ├── atm-card.svg
-    ├── cedi.svg
-    ├── cent.svg
-    ├── chart.svg
-    ├── coin.svg
-    ├── crypto.svg
-    ├── dollar.svg
-    ├── euro.svg
-    ├── exchange.svg
-    ├── fiat.svg
-    ├── lira-alt.svg
-    ├── lira.svg
-    ├── naira.svg
-    ├── pound.svg
-    ├── ruble.svg
-    ├── rupee.svg
-    ├── stock.svg
-    ├── swap.svg
-    ├── ticket.svg
-    ├── voucher.svg
-    ├── wallet.svg
-    ├── yen.svg
-└── geography/
-    └── ahead.svg
-    └── celcius.svg
-    └── cloud.svg
-    └── compass.svg
-    └── danger.svg
-    └── fahrenheit.svg
-    └── flag.svg
-    └── left-turn.svg
-    └── navigate.svg
-    └── no-parking.svg
-    └── no-stop-sign.svg
-    └── no-u-turn.svg
-    └── parking-sign.svg
-    └── rain.svg
-    └── right-turn.svg
-    └── snow.svg
-    └── spot.svg
-    └── stop-sign.svg
-    └── thunder.svg
-    └── traffic-light.svg
-    └── turn-left-ahead.svg
-    └── turn-right-ahead.svg
-    └── u-turn.svg
-    └── wind.svg
-    └── world.svg
+└── 
+    ├── ARROWS
+    │   ├── chevron-down.svg
+    │   ├── chevron-up.svg
+    │   ├── chevron.svg
+    │   ├── contract.svg
+    │   ├── down-left.svg
+    │   ├── down-right.svg
+    │   ├── down.svg
+    │   ├── expand-all.svg
+    │   ├── expand.svg
+    │   ├── horizontal.svg
+    │   ├── left.svg
+    │   ├── place-x.svg
+    │   ├── place-y.svg
+    │   ├── right.svg
+    │   ├── top-left.svg
+    │   ├── top-right.svg
+    │   ├── up.svg
+    │   ├── vertical.svg
+    ├── BROWSER
+    │   ├── add-fav.svg
+    │   ├── back.svg
+    │   ├── browser.svg
+    │   ├── dev.svg
+    │   ├── downloads.svg
+    │   ├── extension.svg
+    │   ├── fav.svg
+    │   ├── feeds.svg
+    │   ├── forward.svg
+    │   ├── fullscreen.svg
+    │   ├── history.svg
+    │   ├── home.svg
+    │   ├── https.svg
+    │   ├── incognito.svg
+    │   ├── inspect.svg
+    │   ├── install-app.svg
+    │   ├── launch-app.svg
+    │   ├── link.svg
+    │   ├── offline.svg
+    │   ├── online.svg
+    │   ├── password.svg
+    │   ├── pin-tab.svg
+    │   ├── profile.svg
+    │   ├── read-mode.svg
+    │   ├── reload.svg
+    │   ├── remove-fav.svg
+    │   ├── search.svg
+    │   ├── send-to.svg
+    │   ├── stop.svg
+    │   ├── tab-add.svg
+    │   ├── update.svg
+    │   ├── vpn.svg
+    │   ├── window-new.svg
+    ├── EDITOR
+    │   ├── addition.svg
+    │   ├── align-center.svg
+    │   ├── align-justify.svg
+    │   ├── align-left.svg
+    │   ├── align-right.svg
+    │   ├── align-spread.svg
+    │   ├── bold.svg
+    │   ├── copy.svg
+    │   ├── copyright.svg
+    │   ├── cut.svg
+    │   ├── edit.svg
+    │   ├── equal.svg
+    │   ├── font.svg
+    │   ├── hash.svg
+    │   ├── italic.svg
+    │   ├── layers.svg
+    │   ├── list.svg
+    │   ├── multiply.svg
+    │   ├── note.svg
+    │   ├── null.svg
+    │   ├── paste.svg
+    │   ├── percent.svg
+    │   ├── print.svg
+    │   ├── quotes.svg
+    │   ├── redo.svg
+    │   ├── registered.svg
+    │   ├── ruler.svg
+    │   ├── save.svg
+    │   ├── strike-through.svg
+    │   ├── subscript.svg
+    │   ├── subtract.svg
+    │   ├── superscript.svg
+    │   ├── trademark.svg
+    │   ├── underline.svg
+    │   ├── undo.svg
+    ├── FINANCE
+    │   ├── asset.svg
+    │   ├── atm-card.svg
+    │   ├── cedi.svg
+    │   ├── cent.svg
+    │   ├── chart.svg
+    │   ├── coin.svg
+    │   ├── crypto.svg
+    │   ├── dollar.svg
+    │   ├── euro.svg
+    │   ├── exchange.svg
+    │   ├── fiat.svg
+    │   ├── lira-alt.svg
+    │   ├── lira.svg
+    │   ├── naira.svg
+    │   ├── pound.svg
+    │   ├── ruble.svg
+    │   ├── rupee.svg
+    │   ├── stock.svg
+    │   ├── swap.svg
+    │   ├── ticket.svg
+    │   ├── voucher.svg
+    │   ├── wallet.svg
+    │   ├── yen.svg
+    └── GEOGRAPHY
+        └── ahead.svg
+        └── celcius.svg
+        └── cloud.svg
+        └── compass.svg
+        └── danger.svg
+        └── fahrenheit.svg
+        └── flag.svg
+        └── left-turn.svg
+        └── navigate.svg
+        └── no-parking.svg
+        └── no-stop-sign.svg
+        └── no-u-turn.svg
+        └── parking-sign.svg
+        └── rain.svg
+        └── right-turn.svg
+        └── snow.svg
+        └── spot.svg
+        └── stop-sign.svg
+        └── thunder.svg
+        └── traffic-light.svg
+        └── turn-left-ahead.svg
+        └── turn-right-ahead.svg
+        └── u-turn.svg
+        └── wind.svg
+        └── world.svg

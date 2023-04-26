@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 /**
  * This is the builder.js file.
  * It is the entry point of the application.
@@ -8,8 +9,8 @@
  */
 
 const fs = require("fs");
-const zip = require("adm-zip");
-const zipFile = new zip();
+const Zip = require("adm-zip");
+const zipFile = new Zip();
 
 // -------------- Runtime and processing -------------------
 
@@ -59,29 +60,25 @@ deleteFiles([refined, structure])
 	})
 	.then(() => {
 		// Print and output svg folder structure to a text-file
-		function printFolderStructure(
-			path,
-			prefix = "",
-			isLast = true,
-			output = ""
-		) {
+		function printFolderStructure(path, prefix = "", isLast = true) {
 			const files = fs.readdirSync(path);
 			const arrows = isLast ? "└── " : "├── ";
+			const output = [];
+			const dirName = path.split("/").pop().toUpperCase();
+			output.push(prefix + arrows + dirName);
+			const newPrefix = isLast ? `${prefix}    ` : `${prefix}│   `;
 			files.forEach((file, index) => {
 				const filePath = `${path}/${file}`;
 				const stats = fs.statSync(filePath);
 				const isDirectory = stats.isDirectory();
-				const symbolPrefix = isLast ? "    " : "│   ";
-				const fileName = isDirectory ? `${file}/` : file;
-				output += prefix + arrows + fileName + "\n";
+				const newLast = index === files.length - 1;
 				if (isDirectory) {
-					const newPrefix = prefix + symbolPrefix;
-					const newLast = index === files.length - 1;
-					output = printFolderStructure(filePath, newPrefix, newLast, output);
+					output.push(printFolderStructure(filePath, newPrefix, newLast));
+				} else {
+					output.push(newPrefix + arrows + file);
 				}
 			});
-
-			return output;
+			return output.join("\n");
 		}
 
 		const folderStructure = printFolderStructure(source);
@@ -100,4 +97,4 @@ deleteFiles([refined, structure])
 
 // --------------- Debugging and test ----------------------
 
-//console.log(JSON.stringify(allData));
+// console.log(JSON.stringify(allData));

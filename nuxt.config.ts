@@ -1,5 +1,3 @@
-import { searchForWorkspaceRoot } from "vite";
-
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
 	app: {
@@ -19,8 +17,7 @@ export default defineNuxtConfig({
 				{ name: "rating", content: "General" },
 				{
 					name: "copyright",
-					content:
-						`Bolarinwa Olakunle (Joberror) - ${new Date().getFullYear()}`,
+					content: `Bolarinwa Olakunle (Joberror) - ${new Date().getFullYear()}`,
 				},
 				{ hid: "description", name: "description", content: "" },
 				{ name: "format-detection", content: "telephone=yes" },
