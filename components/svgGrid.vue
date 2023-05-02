@@ -81,51 +81,60 @@
 	</div>
 </template>
 <script>
-import { useClipboard } from "@vueuse/core";
+	import { useClipboard } from "@vueuse/core";
 
-export default {
-	props: ["cat"],
-	data() {
-		return {
-			toggleGrid: false,
-		};
-	},
-	computed: {
-		mySvgCode() {
-			const { copy } = useClipboard();
-			return (event) => {
-				// Destructuring the event.target object
-				const { tagName, children, innerHTML, parentNode } = event.target;
-				const closestUl = parentNode.closest("ul");
-				const note = closestUl.previousElementSibling.querySelector("#notify");
-
-				let html = "";
-				switch (tagName) {
-					case "A":
-						html = children[0].children[0].innerHTML;
-						break;
-					case "svg":
-						html = innerHTML;
-						break;
-					default:
-						html = parentNode.innerHTML;
-				}
-
-				copy(
-					`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">${html}</svg>`
-				);
-				note.animate(
-					{
-						opacity: [1, 0]
-					},
-					{
-						duration: 6000,
-						easing: "linear",
-						endDelay: 3000
-					}
-				);
+	export default {
+		props: ["cat"],
+		data() {
+			return {
+				toggleGrid: false,
 			};
 		},
-	},
-};
+		computed: {
+			/**
+			 * This function is a Higher Order Function that returns a function to be executed on click.
+			 * The returned function extracts the innerHTML of the clicked element and copies it to the clipboard
+			 * as an SVG element with predefined attributes. It also animates a notification element to appear and disappear.
+			 *
+			 * @returns {function} A function to be executed on click event.
+			 */
+
+			mySvgCode() {
+				const { copy } = useClipboard();
+				return (event) => {
+					// Destructuring the event.target object
+					const { tagName, children, innerHTML, parentNode } = event.target;
+					const closestUl = parentNode.closest("ul");
+					const note =
+						closestUl.previousElementSibling.querySelector("#notify");
+
+					let html = "";
+					switch (tagName) {
+						case "A":
+							html = children[0].children[0].innerHTML;
+							break;
+						case "svg":
+							html = innerHTML;
+							break;
+						default:
+							html = parentNode.innerHTML;
+					}
+
+					copy(
+						`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">${html}</svg>`
+					);
+					note.animate(
+						{
+							opacity: [1, 0],
+						},
+						{
+							duration: 6000,
+							easing: "linear",
+							endDelay: 3000,
+						}
+					);
+				};
+			},
+		},
+	};
 </script>
