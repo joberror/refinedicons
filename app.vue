@@ -134,10 +134,21 @@
 				</ul>
 			</div>
 		</section>
-		<section class="relative ml-auto w-[55vw] px-8 pb-8 max-md:w-full">
-			<div class="sticky top-0 z-10 flex w-full justify-end py-8">
+		<section class="relative ml-auto w-[55vw] max-md:w-full">
+			<ul class="absolute z-10 inline-flex w-full justify-center pt-10 text-lg text-theme-primary-400 dark:text-theme-primary-300 max-sm:bottom-0 max-sm:pb-10">
+				<li>made with</li>
+				<li class="inline-flex">
+					<span class="mx-2 inline-flex h-6 w-6">
+						<svg class="h-full w-full fill-theme-primary-900" data-url="ui/love.svg"></svg>
+					</span>
+				</li>
+				<li>
+					by <a class="text-theme-primary-900 hover:underline" href="https://iamjoberror.com" title="Olakunle Bolarinwa's website">Olakunle Bolarinwa</a>
+				</li>
+			</ul>
+			<div class="sticky top-0 z-20 ml-auto w-fit py-8 pr-8">
 				<form
-					class="group flex flex-row justify-between rounded-full border bg-white p-2 ring-1 ring-theme-primary-100 ring-offset-4 ring-offset-white transition-all duration-300 hover:w-1/3 hover:pl-4 dark:border-transparent dark:bg-theme-primary-300 dark:ring-theme-primary-400 dark:ring-offset-theme-primary-300 max-sm:hover:w-full"
+					class="group flex flex-row justify-between rounded-full border bg-white p-2 ring-1 ring-theme-primary-100 ring-offset-4 ring-offset-white transition-all duration-300 hover:w-[20vw] hover:pl-4 dark:border-transparent dark:bg-theme-primary-300 dark:ring-theme-primary-400 dark:ring-offset-theme-primary-300 max-sm:hover:w-[80vw]"
 					@submit.prevent="submitSearch"
 				>
 					<input
@@ -158,7 +169,7 @@
 					</button>
 				</form>
 			</div>
-			<div class="z-0 flex flex-wrap justify-center gap-16">
+			<div class="z-0 flex flex-wrap justify-center gap-16 pb-8 max-sm:pb-24">
 				<svgGrid v-for="(cat, key) in allData" :key="key" :cat="cat" />
 			</div>
 		</section>
@@ -167,158 +178,208 @@
 </template>
 
 <script>
-import allData from "@/content/data.json";
-import LogRocket from 'logrocket';
-LogRocket.init('vczane/iamjoberror');
+	import allData from "@/content/data.json";
+	// import LogRocket from "logrocket";
+	// LogRocket.init("vczane/iamjoberror");
 
-export default {
-	data() {
-		return {
-			search: "",
-		};
-	},
-	// Add a computed property to the Vue component to return an array of all icon objects
-	computed: {
-		allIcons() {
-			// Return an array of all icon objects in `allData`
-			return allData.flatMap((sub) => sub.icons.flat(1)).sort();
+	export default {
+		data() {
+			return {
+				search: "",
+				searchTimeoutId: null,
+				cachedEl: null,
+			};
 		},
-	},
-	mounted() {
-		this.loadSvg();
-		this.submitSearch();
-	},
-	updated() {
-		this.loadSvg();
-	},
-	methods: {
-		// Process search input
-		handleSearch(e) {
-			// Retrieve a lowercase search query string from the target of the event.
-			const query = e.target.value.toLowerCase();
+		// Add a computed property to the Vue component to return an array of all icon objects
+		computed: {
+			/**
+			 * Returns an array of all icon objects in `allData`.
+			 *
+			 * @returns {Array} An array of all icon objects in `allData`.
+			 */
+			allIcons() {
+				// Return an array of all icon objects in `allData`
+				return allData.flatMap((sub) => sub.icons.flat(1)).sort();
+			},
+		},
+		mounted() {
+			this.loadSvg();
+			this.submitSearch();
+		},
+		updated() {
+			this.loadSvg();
+		},
+		methods: {
+			/**
+			 * Handles the search functionality by retrieving a lowercase search query string from the target of the event
+			 * and searching for an icon name in lowercase within the `allIcons` array, such that the icon name starts with the search query string.
+			 * If a matching icon name is found, it is assigned to `this.search`.
+			 * The || "" at the end sets `this.search` to an empty string if no matching icon is found.
+			 * @param {*} e - The event object.
+			 */
+			handleSearch(e) {
+				// Retrieve a lowercase search query string from the target of the event.
+				const query = e.target.value.toLowerCase();
 
-			// Search for an icon name in lower case within the `allIcons` array, such that the icon name starts with the search query string:
-			// If a matching icon name is found, it is assigned to `this.search`.
-			// The || "" at the end sets `this.search` to an empty string if no matching icon is found.
-			this.search =
-				this.allIcons.find((name) => name.toLowerCase().startsWith(query)) ||
-				"";
-		},
-		async fetchSvg(url, el) {
-			const response = await fetch(url);
-			const data = await response.text();
-			const parser = new DOMParser();
-			const parsed = parser.parseFromString(data, "image/svg+xml");
-			const svg = parsed.getElementsByTagName("svg")[0];
-			const attr = svg.attributes;
-			const attrLen = attr.length;
-			for (let i = 0; i < attrLen; ++i) {
-				if (attr[i].specified) {
-					if (attr[i].name === "class") {
-						const classes = attr[i].value
-							.replace(/\s+/g, " ")
-							.trim()
-							.split(" ");
-						const classesLen = classes.length;
-						for (let j = 0; j < classesLen; ++j) {
-							el.classList.add(classes[j]);
+				// Search for an icon name in lowercase within the `allIcons` array.
+				// If a matching icon name is found, it is assigned to `this.search`.
+				// The || "" at the end sets `this.search` to an empty string if no matching icon is found.
+				this.search =
+					this.allIcons.find((name) => name.toLowerCase().startsWith(query)) ||
+					"";
+			},
+			/**
+			 * Fetches an SVG from a given URL and appends it to a given element.
+			 *
+			 * @param {string} url - The URL of the SVG to fetch.
+			 * @param {HTMLElement} el - The element to append the SVG to.
+			 * @returns {Promise<void>} - A Promise that resolves when the SVG has been fetched and appended.
+			 */
+
+			async fetchSvg(url, el) {
+				const response = await fetch(url);
+				const data = await response.text();
+				const parser = new DOMParser();
+				const parsed = parser.parseFromString(data, "image/svg+xml");
+				const svg = parsed.getElementsByTagName("svg")[0];
+				const attr = svg.attributes;
+				const attrLen = attr.length;
+				for (let i = 0; i < attrLen; ++i) {
+					if (attr[i].specified) {
+						if (attr[i].name === "class") {
+							const classes = attr[i].value
+								.replace(/\s+/g, " ")
+								.trim()
+								.split(" ");
+							const classesLen = classes.length;
+							for (let j = 0; j < classesLen; ++j) {
+								el.classList.add(classes[j]);
+							}
+						} else {
+							el.setAttribute(attr[i].name, attr[i].value);
 						}
-					} else {
-						el.setAttribute(attr[i].name, attr[i].value);
 					}
 				}
-			}
-			while (svg.childNodes.length) {
-				el.appendChild(svg.childNodes[0]);
-			}
-		},
-		async loadSvg() {
-			const svgs = document.querySelectorAll("svg[data-url]");
-			const svgsLen = svgs.length;
-			for (let i = 0; i < svgsLen; ++i) {
-				if (svgs[i].innerHTML) svgs[i].textContent = "";
-				const url = svgs[i].getAttribute("data-url");
-				svgs[i].removeAttribute("data-url");
-				await this.fetchSvg(url, svgs[i]);
-			}
-		},
-		// Search functionality
-		async submitSearch() {
-			const el = document.querySelector(`a[data-keyword="${this.search}"]`);
+				while (svg.childNodes.length) {
+					el.appendChild(svg.childNodes[0]);
+				}
+			},
+			/**
+			 * Asynchronously loads SVG images from URLs and replaces their data-url
+			 * attribute with the SVG code. If the SVG element already contains content,
+			 * it will be cleared before loading the new SVG.
+			 *
+			 * @returns {Promise<void>} Promise that resolves when all SVGs have been loaded.
+			 */
 
-			// If there is no icon found, return early
-			if (!el) {
-				return;
-			}
-			// Select and navigate to the icon found
-			el.classList.add("showcase-icon");
-			// Remove attached class after 6 seconds
-			setTimeout(() => {
-				el.classList.remove("showcase-icon");
-			}, 6000);
+			async loadSvg() {
+				const svgs = document.querySelectorAll("svg[data-url]");
+				const svgsLen = svgs.length;
+				for (let i = 0; i < svgsLen; ++i) {
+					if (svgs[i].innerHTML) svgs[i].textContent = "";
+					const url = svgs[i].getAttribute("data-url");
+					svgs[i].removeAttribute("data-url");
+					await this.fetchSvg(url, svgs[i]);
+				}
+			},
+			// Search functionality
+			async submitSearch() {
+				// Use cached element if available
+				if (this.cachedEl && this.cachedEl.dataset.keyword === this.search) {
+					this.scrollToIcon(this.cachedEl);
+					return;
+				}
 
-			// Scroll to the icon
-			el.scrollIntoView({ behavior: "smooth" });
+				// Clear any existing timeout
+				clearTimeout(this.searchTimeoutId);
+
+				// Debounce the search
+				this.searchTimeoutId = setTimeout(async () => {
+					const el = document.querySelector(`a[data-keyword="${this.search}"]`);
+
+					// Cache the element if found
+					if (el) {
+						this.cachedEl = el;
+						this.scrollToIcon(el);
+					}
+				}, 500);
+			},
+			/**
+			 * Scrolls to the provided element with a smooth behavior.
+			 *
+			 * @param {HTMLElement} el - The element to scroll to.
+			 * @returns {void}
+			 */
+
+			scrollToIcon(el) {
+				// Select and navigate to the icon found
+				el.classList.add("showcase-icon");
+				// Remove attached class
+				setTimeout(() => {
+					el.classList.remove("showcase-icon");
+				}, 6000);
+				// Scroll to the icon
+				el.scrollIntoView({ behavior: "smooth" });
+			},
 		},
-	},
-};
+	};
 </script>
 
 <script setup>
-import { useDark, useToggle } from "@vueuse/core";
-import { ref } from "vue";
-import svgGrid from "@/components/svgGrid.vue";
+	import { useDark, useToggle } from "@vueuse/core";
+	import { ref } from "vue";
+	import svgGrid from "@/components/svgGrid.vue";
 
-useHead({
-	htmlAttrs: {
-		lang: "en",
-	},
-});
+	useHead({
+		htmlAttrs: {
+			lang: "en",
+		},
+	});
 
-// toggle Dark and Light theme
-const isDark = useDark();
-const toggleDark = useToggle(isDark);
+	// toggle Dark and Light theme
+	const isDark = useDark();
+	const toggleDark = useToggle(isDark);
 
-// assign data
-const details = {
-	version: 1.6,
-	numOfCategory: Object.keys(allData).length,
-	numOfIcons: allData.reduce((a, b) => a + b.total, 0),
-};
+	// assign data
+	const details = {
+		version: 2.0,
+		numOfCategory: Object.keys(allData).length,
+		numOfIcons: allData.reduce((a, b) => a + b.total, 0),
+	};
 
-// SVG illustrative properties
-const properties = [
-	{
-		name: "Corner",
-		svg: "stroke-corner.svg",
-		ppt: "1pt round",
-	},
-	{
-		name: "Padding",
-		svg: "icon-padding.svg",
-		ppt: "2pt",
-	},
-	{
-		name: "Weight",
-		svg: "stroke.svg",
-		ppt: "2pt",
-	},
-	{
-		name: "Align",
-		svg: "stroke-align.svg",
-		ppt: "center",
-	},
-	{
-		name: "Edge",
-		svg: "stroke-edges.svg",
-		ppt: "round",
-	},
-	{
-		name: "Size",
-		svg: "icon-size.svg",
-		ppt: "24pt",
-	},
-];
+	// SVG illustrative properties
+	const properties = [
+		{
+			name: "Corner",
+			svg: "stroke-corner.svg",
+			ppt: "1pt round",
+		},
+		{
+			name: "Padding",
+			svg: "icon-padding.svg",
+			ppt: "2pt",
+		},
+		{
+			name: "Weight",
+			svg: "stroke.svg",
+			ppt: "2pt",
+		},
+		{
+			name: "Align",
+			svg: "stroke-align.svg",
+			ppt: "center",
+		},
+		{
+			name: "Edge",
+			svg: "stroke-edges.svg",
+			ppt: "round",
+		},
+		{
+			name: "Size",
+			svg: "icon-size.svg",
+			ppt: "24pt",
+		},
+	];
 
-const svgPpt = ref(properties);
+	const svgPpt = ref(properties);
 </script>
