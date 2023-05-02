@@ -28,7 +28,6 @@ module.exports = {
 				box: "0 1px 3px rgba(11, 19, 36, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.1)",
 			},
 			backgroundImage: {
-				viewer: "url('ui/viewer-bg.svg')",
 				bgLight:
 					"radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.33) 0px, rgba(0, 0, 0, 0) 50%), radial-gradient(at 98% 1%, rgba(212, 25, 118, 0.33) 0px, rgba(0, 0, 0, 0) 50%)",
 			},
