@@ -52,6 +52,23 @@
     │   ├── update.svg
     │   ├── vpn.svg
     │   ├── window-new.svg
+    ├── DEV
+    │   ├── angualr.svg
+    │   ├── azure.svg
+    │   ├── figma.svg
+    │   ├── git.svg
+    │   ├── go-lang.svg
+    │   ├── html.svg
+    │   ├── javascript.svg
+    │   ├── json.svg
+    │   ├── nodejs.svg
+    │   ├── nuxt.svg
+    │   ├── php.svg
+    │   ├── python.svg
+    │   ├── react.svg
+    │   ├── terminal.svg
+    │   ├── vscode.svg
+    │   ├── vue.svg
     ├── EDITOR
     │   ├── addition.svg
     │   ├── align-center.svg
@@ -67,12 +84,15 @@
     │   ├── equal.svg
     │   ├── font.svg
     │   ├── hash.svg
+    │   ├── indent.svg
     │   ├── italic.svg
     │   ├── layers.svg
+    │   ├── line-height.svg
     │   ├── list.svg
     │   ├── multiply.svg
     │   ├── note.svg
     │   ├── null.svg
+    │   ├── paragraph-space.svg
     │   ├── paste.svg
     │   ├── percent.svg
     │   ├── print.svg
@@ -85,6 +105,8 @@
     │   ├── subscript.svg
     │   ├── subtract.svg
     │   ├── superscript.svg
+    │   ├── text-bg-color.svg
+    │   ├── text-color.svg
     │   ├── trademark.svg
     │   ├── underline.svg
     │   ├── undo.svg
@@ -112,29 +134,57 @@
     │   ├── voucher.svg
     │   ├── wallet.svg
     │   ├── yen.svg
-    └── GEOGRAPHY
-        └── ahead.svg
-        └── celcius.svg
-        └── cloud.svg
-        └── compass.svg
-        └── danger.svg
-        └── fahrenheit.svg
-        └── flag.svg
-        └── left-turn.svg
-        └── navigate.svg
-        └── no-parking.svg
-        └── no-stop-sign.svg
-        └── no-u-turn.svg
-        └── parking-sign.svg
-        └── rain.svg
-        └── right-turn.svg
-        └── snow.svg
-        └── spot.svg
-        └── stop-sign.svg
-        └── thunder.svg
-        └── traffic-light.svg
-        └── turn-left-ahead.svg
-        └── turn-right-ahead.svg
-        └── u-turn.svg
-        └── wind.svg
-        └── world.svg
+    ├── GEOGRAPHY
+    │   ├── ahead.svg
+    │   ├── celcius.svg
+    │   ├── cloud.svg
+    │   ├── compass.svg
+    │   ├── danger.svg
+    │   ├── fahrenheit.svg
+    │   ├── flag.svg
+    │   ├── left-turn.svg
+    │   ├── navigate.svg
+    │   ├── no-parking.svg
+    │   ├── no-stop-sign.svg
+    │   ├── no-u-turn.svg
+    │   ├── parking-sign.svg
+    │   ├── rain.svg
+    │   ├── right-turn.svg
+    │   ├── snow.svg
+    │   ├── spot.svg
+    │   ├── stop-sign.svg
+    │   ├── thunder.svg
+    │   ├── traffic-light.svg
+    │   ├── turn-left-ahead.svg
+    │   ├── turn-right-ahead.svg
+    │   ├── u-turn.svg
+    │   ├── wind.svg
+    │   ├── world.svg
+    └── OBJECTS
+        └── balance.svg
+        └── bin.svg
+        └── books.svg
+        └── bottle.svg
+        └── box.svg
+        └── bulb.svg
+        └── can.svg
+        └── clock.svg
+        └── cog.svg
+        └── comb.svg
+        └── cup-alt.svg
+        └── cup.svg
+        └── funnel.svg
+        └── key.svg
+        └── knife.svg
+        └── magnet.svg
+        └── nail.svg
+        └── paper-clip.svg
+        └── pin.svg
+        └── research.svg
+        └── scissors.svg
+        └── screw.svg
+        └── screwdriver.svg
+        └── shovel.svg
+        └── spanner.svg
+        └── tools.svg
+        └── umbrella.svg
