@@ -3,17 +3,17 @@
 		class="brd-shadow flex h-fit w-fit max-w-full flex-col rounded-lg border border-solid border-indigo-200/60 bg-gray-50/20 duration-300 ease-linear hover:bg-white dark:border-[#211e38] dark:bg-[#191724] max-md:order-none"
 		:class="{ 'order-first': toggleGrid }"
 	>
-		<ul class="flex w-full justify-between py-2 pl-2">
+		<ul class="flex justify-between w-full py-2 pl-2">
 			<li>
 				<button
 					class="inline-flex items-center duration-200 ease-in"
 					title="View all icons in this category"
 					@click="toggleGrid = !toggleGrid"
 				>
-					<span class="h-6 w-6">
+					<span class="w-6 h-6">
 						<svg
 							data-url="/ui/chevron-down.svg"
-							class="h-full w-full stroke-slate-400 duration-200 ease-out dark:stroke-zinc-700"
+							class="w-full h-full duration-200 ease-out stroke-slate-400 dark:stroke-zinc-700"
 							:class="{
 								'rotate-180 duration-200 ease-in': toggleGrid,
 							}"
@@ -32,16 +32,16 @@
 			</li>
 			<li id="notify" class="text-gray-500 opacity-0">
 				svg copied!
-				<span class="inline-flex h-3 w-3">
+				<span class="inline-flex w-3 h-3">
 					<span
-						class="inline-flex h-full w-full animate-ping rounded-full bg-gray-400 opacity-75"
+						class="inline-flex w-full h-full bg-gray-400 rounded-full opacity-75 animate-ping"
 					></span>
-					<span class="inline-flex h-3 w-3 rounded-full bg-gray-500"></span>
+					<span class="inline-flex w-3 h-3 bg-gray-500 rounded-full"></span>
 				</span>
 			</li>
 		</ul>
 		<ul
-			class="svgBox grid h-72 snap-y grid-cols-3 overflow-y-auto scroll-smooth px-2 transition-all duration-500 scrollbar-w-1 scrollbar-thumb-white scrollbar-track-gray-200 dark:scrollbar-thumb-zinc-900 dark:scrollbar-track-zinc-800"
+			class="grid grid-cols-3 px-2 overflow-y-auto transition-all duration-500 svgBox h-72 snap-y scroll-smooth scrollbar-w-1 scrollbar-thumb-white scrollbar-track-gray-200 dark:scrollbar-thumb-zinc-900 dark:scrollbar-track-zinc-800"
 			:class="{
 				'h-max grid-cols-9 max-xl:grid-cols-6 max-lg:grid-cols-4 max-sm:grid-cols-3':
 					toggleGrid,
@@ -58,10 +58,10 @@
 					@click.prevent="mySvgCode"
 				>
 					<span
-						class="mb-4 inline-flex h-8 w-8 transition-all group-hover:mb-0 group-hover:h-12 group-hover:w-12"
+						class="inline-flex w-8 h-8 mb-4 transition-all group-hover:mb-0 group-hover:h-12 group-hover:w-12"
 					>
 						<svg
-							class="w-full stroke-theme-primary-200 group-hover:stroke-theme-primary-400 dark:group-hover:stroke-white"
+							class="w-full stroke-theme-primary-200 group-hover:stroke-theme-primary-400 dark:stroke-zinc-400 dark:group-hover:stroke-white"
 							:data-url="'/svg/' + cat.category + '/' + list + '.svg'"
 						></svg>
 					</span>
